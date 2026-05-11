@@ -5,6 +5,10 @@ import { Button, Center, PasswordInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { zod4Resolver } from 'mantine-form-zod-resolver';
 import Form from '@/shared/ui/Form';
+import { useRouter } from 'next/navigation';
+import { useStores } from '@/app/providers/StoreProvider';
+import { login } from '@/features/auth/api';
+import { getUser } from '@/entities/user/api';
 
 const loginSchema = z.object({
     username: z.string().min(1, 'Обязательное поле'),
@@ -14,6 +18,9 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function Login() {
+    const router = useRouter();
+    const rootStore = useStores();
+
     const form = useForm({
         initialValues: {
             username: '',
@@ -24,7 +31,11 @@ export default function Login() {
 
     const onSubmit = async (credentials: LoginFormValues) => {
         try {
-            // fetch login api
+            await login(credentials);
+            const user = await getUser();
+            console.log(user);
+            rootStore?.userStore.setUser(user);
+            router.push('/chats');
         } catch (e) {
             console.log(e);
         }
@@ -44,7 +55,11 @@ export default function Login() {
 
                 <Button type="submit">Войти</Button>
 
-                <Button type="button" onClick={() => {}} variant="outline">
+                <Button
+                    type="button"
+                    onClick={() => router.push('/sign-up')}
+                    variant="outline"
+                >
                     Впервые здесь? Регистрация
                 </Button>
             </Form>

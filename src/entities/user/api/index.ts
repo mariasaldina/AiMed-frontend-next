@@ -15,7 +15,7 @@ export const getUser = async () => {
     } catch (e) {
         if (axios.isAxiosError(e)) {
             if (e.response?.status === 401) {
-                throw 'Пользователь не авторизован';
+                return null;
             }
         }
         throw 'Неизвестная ошибка авторизации';
