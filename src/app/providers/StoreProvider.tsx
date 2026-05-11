@@ -15,4 +15,12 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     );
 }
 
-export const useStores = () => useContext(StoresContext);
+export const useStores = () => {
+    const store = useContext(StoresContext);
+
+    if (!store) {
+        throw new Error('No Root Store');
+    }
+
+    return store;
+};

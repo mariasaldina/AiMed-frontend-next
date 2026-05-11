@@ -8,14 +8,12 @@ import { observer } from 'mobx-react-lite';
 
 function AuthWrapper({ children }: { children: ReactNode }) {
     const rootStore = useStores();
-    if (!rootStore) return null;
-
     const { user, isInitialized } = rootStore.userStore;
 
     const pathname = usePathname();
     const router = useRouter();
 
-    const publicPaths = ['/login', '/sign-up', '/home'];
+    const publicPaths = ['/login', '/sign-up', '/'];
 
     useEffect(() => {
         if (!isInitialized) {

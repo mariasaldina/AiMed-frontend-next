@@ -4,6 +4,8 @@ import '@mantine/core/styles.css';
 import { StoreProvider } from './providers/StoreProvider';
 import UserInitializer from './UserInitializer';
 import AuthWrapper from '@/widgets/AuthWrapper';
+import theme from './providers/theme';
+import AppLayout from '@/widgets/AppLayout';
 
 export const metadata: Metadata = {
     title: 'AiMed',
@@ -18,10 +20,12 @@ export default function RootLayout({
     return (
         <html lang="ru">
             <body>
-                <MantineProvider>
+                <MantineProvider theme={theme}>
                     <StoreProvider>
                         <UserInitializer>
-                            <AuthWrapper>{children}</AuthWrapper>
+                            <AuthWrapper>
+                                <AppLayout>{children}</AppLayout>
+                            </AuthWrapper>
                         </UserInitializer>
                     </StoreProvider>
                 </MantineProvider>

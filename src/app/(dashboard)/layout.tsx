@@ -1,4 +1,3 @@
-import AuthWrapper from '@/widgets/AuthWrapper';
 import { ReactNode } from 'react';
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {

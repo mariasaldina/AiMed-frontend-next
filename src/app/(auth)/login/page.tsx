@@ -8,7 +8,6 @@ import Form from '@/shared/ui/Form';
 import { useRouter } from 'next/navigation';
 import { useStores } from '@/app/providers/StoreProvider';
 import { login } from '@/features/auth/api';
-import { getUser } from '@/entities/user/api';
 
 const loginSchema = z.object({
     username: z.string().min(1, 'Обязательное поле'),
@@ -32,9 +31,7 @@ export default function Login() {
     const onSubmit = async (credentials: LoginFormValues) => {
         try {
             await login(credentials);
-            const user = await getUser();
-            console.log(user);
-            rootStore?.userStore.setUser(user);
+            rootStore?.userStore.setUser();
             router.push('/chats');
         } catch (e) {
             console.log(e);

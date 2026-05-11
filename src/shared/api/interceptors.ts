@@ -1,12 +1,16 @@
-import { AxiosError, type AxiosResponse, type InternalAxiosRequestConfig } from "axios";
-import Cookies from "js-cookie";
-import { api, refreshApi } from "./base";
+import {
+    AxiosError,
+    type AxiosResponse,
+    type InternalAxiosRequestConfig,
+} from 'axios';
+import Cookies from 'js-cookie';
+import { api, refreshApi } from './base';
 
 api.interceptors.request.use((config) => {
-    const csrfToken = Cookies.get("csrf");
+    const csrfToken = Cookies.get('csrf');
 
     if (csrfToken) {
-        config.headers.set("X-XSRF-Token", csrfToken);
+        config.headers.set('X-XSRF-Token', csrfToken);
     }
 
     return config;
@@ -17,20 +21,25 @@ let refreshPromise: Promise<void> | null = null;
 api.interceptors.response.use(
     (res: AxiosResponse<unknown, unknown>) => res,
     async (err: AxiosError<unknown, unknown>) => {
-        const originalRequest = err.config as InternalAxiosRequestConfig<unknown> & {
-            _retry?: boolean;
-        };
+        const originalRequest =
+            err.config as InternalAxiosRequestConfig<unknown> & {
+                _retry?: boolean;
+            };
 
-        const isAuthRoute = originalRequest.url?.includes('/auth/')
+        const isAuthRoute = originalRequest.url?.includes('/auth/');
 
-        if (err.response?.status !== 401 || originalRequest?._retry || isAuthRoute) {
+        if (
+            err.response?.status !== 401 ||
+            originalRequest?._retry ||
+            isAuthRoute
+        ) {
             throw err;
         }
 
         originalRequest._retry = true;
 
         if (!refreshPromise) {
-            console.log('try refresh')
+            console.log('try refresh');
             refreshPromise = refreshApi.post('auth/refresh');
         }
 
@@ -38,9 +47,9 @@ api.interceptors.response.use(
             await refreshPromise;
             return api(originalRequest);
         } catch (e) {
-            throw err;  
+            throw err;
         } finally {
             refreshPromise = null;
         }
-    }
-)
+    },
+);

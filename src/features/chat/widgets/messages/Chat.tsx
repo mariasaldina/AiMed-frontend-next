@@ -1,22 +1,20 @@
 'use client';
 
 import { useRef } from 'react';
+import MessageList from './MessageList';
+import MessageInput from './MessageInput';
 import { Box, Center, Flex, Loader, ScrollArea } from '@mantine/core';
+import { useChatMessages } from '../../hooks/useChatMessages';
 import TypingIndicator from '@/shared/ui/TypingIndicator';
 import { useParams } from 'next/navigation';
 import { useStores } from '@/app/providers/StoreProvider';
 import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll';
-import { useChatMessages } from '@/features/chat/hooks/useChatMessages';
-import MessageList from '@/features/chat/widgets/messages/MessageList';
-import MessageInput from '@/features/chat/widgets/messages/MessageInput';
-import { observer } from 'mobx-react-lite';
 
 const Chat = () => {
     const { chatId } = useParams();
     const parsedChatId = chatId ? Number(chatId) : null;
 
     const rootStore = useStores();
-
     const { hasMore } = rootStore.messageStore;
     const { loading } = rootStore.settingsStore;
     const sending =
@@ -87,4 +85,4 @@ const Chat = () => {
     );
 };
 
-export default observer(Chat);
+export default Chat;
