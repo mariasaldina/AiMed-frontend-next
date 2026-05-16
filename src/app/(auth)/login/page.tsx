@@ -31,7 +31,7 @@ export default function Login() {
     const onSubmit = async (credentials: LoginFormValues) => {
         try {
             await login(credentials);
-            rootStore?.userStore.setUser();
+            rootStore?.userStore.async.setUser();
             router.push('/chats');
         } catch (e) {
             console.log(e);

@@ -1,9 +1,9 @@
-import { Button, Flex, Modal, Stack, Text } from "@mantine/core"
-import { IconMoodSadFilled } from "@tabler/icons-react";
+import { Button, Flex, Modal, Stack, Text } from '@mantine/core';
+import { IconMoodSadFilled } from '@tabler/icons-react';
 
 interface ErrorAlertProps {
-    errorMessage: string | null
-    onClose: () => void
+    errorMessage: string | null;
+    onClose: () => void;
 }
 
 function ErrorAlert({ errorMessage, onClose }: ErrorAlertProps) {
@@ -13,9 +13,7 @@ function ErrorAlert({ errorMessage, onClose }: ErrorAlertProps) {
             onClose={onClose}
             title={
                 <Flex gap={10}>
-                    <Text fw="600">
-                        Ошибка
-                    </Text>
+                    <Text fw="600">Ошибка</Text>
                     <IconMoodSadFilled />
                 </Flex>
             }
@@ -23,10 +21,12 @@ function ErrorAlert({ errorMessage, onClose }: ErrorAlertProps) {
         >
             <Stack>
                 <Text>{errorMessage}</Text>
-                <Button onClick={onClose} bg={'gray'}>Закрыть</Button>
+                <Button onClick={onClose} bg={'gray'}>
+                    Закрыть
+                </Button>
             </Stack>
         </Modal>
-    )
+    );
 }
 
-export default ErrorAlert
+export default ErrorAlert;

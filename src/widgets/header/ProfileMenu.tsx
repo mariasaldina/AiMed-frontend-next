@@ -45,7 +45,7 @@ const ProfileMenu = () => {
                 </Menu.Item>
                 <Menu.Item
                     rightSection={<IconLogout />}
-                    onClick={() => rootStore.userStore.logout()}
+                    onClick={() => rootStore.userStore.async.logout()}
                 >
                     Выйти
                 </Menu.Item>

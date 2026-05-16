@@ -21,7 +21,7 @@ interface HeaderProps {
 
 function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
     const rootStore = useStores();
-    const { user } = rootStore.userStore;
+    const { user } = rootStore.userStore.state;
     // const { notifications } = useAppSelector(
     //     (state) => state.notificationReducer,
     // );

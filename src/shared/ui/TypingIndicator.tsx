@@ -1,4 +1,4 @@
-import { Loader, Paper } from '@mantine/core'
+import { Loader, Paper } from '@mantine/core';
 
 function TypingIndicator() {
     return (
@@ -10,9 +10,14 @@ function TypingIndicator() {
             style={{ justifySelf: 'center' }}
             w={90}
         >
-            <Loader color="gray.5" size="md" type="dots" style={{ justifySelf: 'center' }} />
+            <Loader
+                color="gray.5"
+                size="md"
+                type="dots"
+                style={{ justifySelf: 'center' }}
+            />
         </Paper>
-    )
+    );
 }
 
-export default TypingIndicator
+export default TypingIndicator;
