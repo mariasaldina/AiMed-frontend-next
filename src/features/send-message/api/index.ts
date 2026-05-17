@@ -1,8 +1,8 @@
-import { ChatRoutes } from '@/entities/chat/api/routes';
 import { mapMessage } from '@/entities/message/model/mapper';
 import { Message } from '@/entities/message/model/message.types';
 import { api } from '@/shared/api';
 import { SendMessageResponseDto } from './dtos';
+import { SendMessageRoutes } from './routes';
 
 export const sendMessage = async (
     content: string,
@@ -12,7 +12,7 @@ export const sendMessage = async (
     assistantMessage: Message;
 }> => {
     const { data } = await api.post<SendMessageResponseDto>(
-        ChatRoutes.SEND_MESSAGE(chatId),
+        SendMessageRoutes.SEND_MESSAGE(chatId),
         {
             content,
         },

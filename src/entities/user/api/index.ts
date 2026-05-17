@@ -7,10 +7,11 @@ import type {
     User,
 } from '@/entities/user/model/user.types';
 import axios from 'axios';
+import { UserRoutes } from './routes';
 
 export const getUser = async () => {
     try {
-        const { data } = await api.get<User>('/user/me');
+        const { data } = await api.get<User>(UserRoutes.GET_ME);
         return data;
     } catch (e) {
         if (axios.isAxiosError(e)) {
@@ -18,7 +19,7 @@ export const getUser = async () => {
                 return null;
             }
         }
-        throw 'Неизвестная ошибка авторизации';
+        throw new Error('Неизвестная ошибка авторизации');
     }
 };
 
@@ -27,13 +28,13 @@ export const editPatientProfile = async (
     profile: PatientProfile,
 ) => {
     try {
-        const { data } = await api.put<User>('/user/patient-questionnaire', {
+        const { data } = await api.put<User>(UserRoutes.EDIT_PATIENT_PROFILE, {
             fullName,
             ...profile,
         });
         return data;
     } catch (e) {
-        throw 'Ошибка при редактировании профиля';
+        throw new Error('Ошибка при редактировании профиля');
     }
 };
 
@@ -42,29 +43,31 @@ export const editDoctorProfile = async (
     profile: DoctorProfile,
 ) => {
     try {
-        const { data } = await api.put<User>('/user/doctor-questionnaire', {
+        const { data } = await api.put<User>(UserRoutes.EDIT_DOCTOR_PROFILE, {
             fullName,
             ...profile,
         });
         return data;
     } catch (e) {
-        throw 'Ошибка при редактировании профиля';
+        throw new Error('Ошибка при редактировании профиля');
     }
 };
 
 export const getSpecializationsList = async () => {
     try {
-        const { data } = await api.get<Specialization[]>('/specialization');
+        const { data } = await api.get<Specialization[]>(
+            UserRoutes.GET_SPECIALIZATIONS,
+        );
         return data;
     } catch (e) {
-        throw 'Ошибка получения списка специализаций';
+        throw new Error('Ошибка получения списка специализаций');
     }
 };
 
 export const updateContacts = async (contacts: Contacts) => {
     try {
-        await api.put('/contacts', contacts);
+        await api.put(UserRoutes.EDIT_CONTACTS, contacts);
     } catch (e) {
-        throw 'Ошибка при редактировании контактов';
+        throw new Error('Ошибка при редактировании контактов');
     }
 };

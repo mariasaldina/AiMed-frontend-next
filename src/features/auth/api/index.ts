@@ -1,5 +1,5 @@
 import { api } from '@/shared/api';
-import { LoginCredentialsDto, SignUpCredentialsDto } from './auth.types';
+import { LoginCredentialsDto, SignUpCredentialsDto } from './dtos';
 import axios from 'axios';
 
 export const login = async (credentials: LoginCredentialsDto) => {
@@ -8,10 +8,10 @@ export const login = async (credentials: LoginCredentialsDto) => {
     } catch (e) {
         if (axios.isAxiosError(e)) {
             if (e.response?.status === 401) {
-                throw 'Неверный username или пароль';
+                throw new Error('Неверный username или пароль');
             }
         }
-        throw 'Неизвестная ошибка входа';
+        throw new Error('Неизвестная ошибка входа');
     }
 };
 
@@ -19,7 +19,7 @@ export const logout = async () => {
     try {
         await api.post('auth/logout');
     } catch (e) {
-        throw 'Ошибка при выходе';
+        throw new Error('Ошибка при выходе');
     }
 };
 
@@ -29,9 +29,9 @@ export const signUp = async (credentials: SignUpCredentialsDto) => {
     } catch (e) {
         if (axios.isAxiosError(e)) {
             if (e.response?.status === 409) {
-                throw 'Пользователь с таким username уже существует';
+                throw new Error('Пользователь с таким username уже существует');
             }
         }
-        throw 'Неизвестная ошибка регистрации';
+        throw new Error('Неизвестная ошибка регистрации');
     }
 };

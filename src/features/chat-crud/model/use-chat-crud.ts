@@ -13,7 +13,7 @@ const useChatCrud = (displayedChat: number | null) => {
 
     const handleAdd = async (title: string) => {
         const chat = await rootStore.chatStore.async.addChat(title);
-        router.push(`/chats/${chat.id}`);
+        if (chat) router.push(`/chats/${chat.id}`);
     };
 
     const handleDelete = async (chatId: number) => {

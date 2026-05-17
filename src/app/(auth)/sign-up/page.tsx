@@ -17,6 +17,8 @@ import { zod4Resolver } from 'mantine-form-zod-resolver';
 import { UserRole } from '@/shared/types/enums';
 import Form from '@/shared/ui/Form';
 import { useRouter } from 'next/navigation';
+import { useStores } from '@/app/providers/StoreProvider';
+import { observer } from 'mobx-react-lite';
 
 const step1Schema = z.object({
     username: z.string().min(1, 'Обязательное поле'),
@@ -32,8 +34,11 @@ const signUpSchema = step1Schema.extend(step2Schema.shape);
 
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 
-export default function SignUp() {
-	const router = useRouter();
+function SignUp() {
+    const router = useRouter();
+
+    const rootStore = useStores();
+    const { loading } = rootStore.settingsStore.state;
 
     const [step, setStep] = useState(0);
 
@@ -68,11 +73,8 @@ export default function SignUp() {
     });
 
     const onSubmit = async (credentials: SignUpFormValues) => {
-        try {
-            //
-        } catch (e) {
-            console.log(e);
-        }
+        await rootStore.userStore.async.signUp(credentials);
+        router.push('/home');
     };
 
     return (
@@ -132,7 +134,12 @@ export default function SignUp() {
                                 </Group>
                             </Radio.Group>
 
-                            <Button type="submit">Зарегистрироваться</Button>
+                            <Button
+                                type="submit"
+                                loading={loading['user/signUp']}
+                            >
+                                Зарегистрироваться
+                            </Button>
                             <Button
                                 type="button"
                                 onClick={prevStep}
@@ -144,10 +151,16 @@ export default function SignUp() {
                     </Stepper.Step>
                 </Stepper>
 
-                <Button type="button" onClick={() => router.push('/login')} variant="outline">
+                <Button
+                    type="button"
+                    onClick={() => router.push('/login')}
+                    variant="outline"
+                >
                     Уже есть аккаунт? Войти
                 </Button>
             </Form>
         </Center>
     );
 }
+
+export default observer(SignUp);

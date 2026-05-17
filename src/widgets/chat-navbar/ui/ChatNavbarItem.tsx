@@ -2,7 +2,7 @@
 
 import { ActionIcon, Flex, Group, Paper, Text } from '@mantine/core';
 import { useState } from 'react';
-import ChatModal from './ChatModal';
+import ChatModal from '@/features/chat-crud/ui/ChatModal';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
 import { Chat } from '@/entities/chat/model/chat.types';
 import { useStores } from '@/app/providers/StoreProvider';
@@ -56,7 +56,7 @@ function ChatNavbarItem({
                     onClose={() => setRenameOpened(false)}
                     handleSubmit={(title) => handleRename(title, chat.id)}
                     formTitle="Введите новое название чата"
-                    loading={loading['chats/addChat']}
+                    loading={loading['chats/renameChat']}
                 />
 
                 <Flex>

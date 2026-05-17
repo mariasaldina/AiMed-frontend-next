@@ -2,7 +2,7 @@ import { runInAction } from 'mobx';
 import {
     getNotifications,
     readNotifications,
-} from '@/features/notifications/api';
+} from '@/entities/notification/api';
 import { NotificationState } from './notification-state';
 import { NotificationSync } from './notification-sync';
 import { RootStore } from '@/stores';
@@ -15,26 +15,42 @@ export class NotificationAsync {
     ) {}
 
     async loadNotifications() {
-        const { read, unread } = await this.root.settingsStore.async.run(
-            'notifications/loadNotifications',
-            getNotifications,
-        );
+        try {
+            this.root.settingsStore.sync.startLoading(
+                'notifications/loadNotifications',
+            );
+            const { read, unread } = await getNotifications();
 
-        runInAction(() => {
-            this.state.read = read;
-            this.state.unread = unread;
-        });
+            runInAction(() => {
+                this.state.read = read;
+                this.state.unread = unread;
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'notifications/loadNotifications',
+            );
+        }
     }
 
     async readNotifications() {
-        await this.root.settingsStore.async.run(
-            'notifications/readNotifications',
-            () => readNotifications(this.state.unread.map((n) => n.id)),
-        );
+        try {
+            this.root.settingsStore.sync.startLoading(
+                'notifications/readNotifications',
+            );
+            await readNotifications(this.state.unread.map((n) => n.id));
 
-        runInAction(() => {
-            this.state.read = [...this.state.unread, ...this.state.read];
-            this.state.unread = [];
-        });
+            runInAction(() => {
+                this.state.read = [...this.state.unread, ...this.state.read];
+                this.state.unread = [];
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'notifications/readNotifications',
+            );
+        }
     }
 }

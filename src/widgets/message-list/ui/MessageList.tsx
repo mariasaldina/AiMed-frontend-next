@@ -5,8 +5,8 @@ import { useStores } from '@/app/providers/StoreProvider';
 import { observer } from 'mobx-react-lite';
 import UserMessage from '@/entities/message/ui/UserMessage';
 import AssistantMessage from '@/entities/message/ui/AssitantMessage';
-import DoctorSuggestionsMessage from '@/entities/message/ui/DoctorSuggestionsMessage';
 import InvitationMessage from '@/entities/message/ui/InvitationMessage';
+import FindDoctorsMessage from '@/features/find-doctors/ui/FindDoctorsMessage';
 
 const MessageList = () => {
     const rootStores = useStores();
@@ -31,7 +31,7 @@ const MessageList = () => {
                         urgency={m.urgency}
                     />
                 ) : m.kind === 'doctorSuggestions' ? (
-                    <DoctorSuggestionsMessage key={m.id} doctors={m.doctors} />
+                    <FindDoctorsMessage key={m.id} doctors={m.doctors} />
                 ) : m.kind === 'invitation' ? (
                     <InvitationMessage
                         key={m.id}

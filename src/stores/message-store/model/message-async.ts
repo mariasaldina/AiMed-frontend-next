@@ -18,60 +18,96 @@ export class MessageAsync {
             return;
         }
 
-        const before =
-            this.state.messages.length !== 0
-                ? this.state.messages[0].createdAt
-                : '';
-        const { messages, hasMore } = await this.root.settingsStore.async.run(
-            'chatMessages/loadMessages',
-            () => getMessages(chatId, before, 3),
-        );
+        try {
+            this.root.settingsStore.sync.startLoading(
+                'chatMessages/loadMessages',
+            );
+            const before =
+                this.state.messages.length !== 0
+                    ? this.state.messages[0].createdAt
+                    : '';
+            const { messages, hasMore } = await getMessages(chatId, before, 3);
 
-        runInAction(() => {
-            const existing = new Set(this.state.messages.map((m) => m.id));
-            const filtered = messages.filter((m) => !existing.has(m.id));
-            this.state.messages.unshift(...filtered);
-            this.state.hasMore = hasMore;
-        });
+            runInAction(() => {
+                const existing = new Set(this.state.messages.map((m) => m.id));
+                const filtered = messages.filter((m) => !existing.has(m.id));
+                this.state.messages.unshift(...filtered);
+                this.state.hasMore = hasMore;
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'chatMessages/loadMessages',
+            );
+        }
     }
 
     async sendMessage(content: string, chatId: number, tempId: string) {
-        const { userMessage, assistantMessage } =
-            await this.root.settingsStore.async.run(
+        try {
+            this.root.settingsStore.sync.startLoading(
                 'chatMessages/sendMessage',
-                () => sendMessage(content, chatId),
+            );
+            const { userMessage, assistantMessage } = await sendMessage(
+                content,
+                chatId,
             );
 
-        runInAction(() => {
-            this.root.chatStore.sync.moveToTop(chatId);
-            this.state.messages = this.state.messages.flatMap((m) =>
-                m.id === tempId ? [userMessage, assistantMessage] : [m],
+            runInAction(() => {
+                this.root.chatStore.sync.moveToTop(chatId);
+                this.state.messages = this.state.messages.flatMap((m) =>
+                    m.id === tempId ? [userMessage, assistantMessage] : [m],
+                );
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'chatMessages/sendMessage',
             );
-        });
+        }
     }
 
     async sendMessageNonOptimistic(content: string, chatId: number) {
-        const { userMessage, assistantMessage } =
-            await this.root.settingsStore.async.run(
-                'chatMessages/sendMessage',
-                () => sendMessage(content, chatId),
+        try {
+            this.root.settingsStore.sync.startLoading(
+                'chatMessages/sendMessageNonOptimistic',
+            );
+            const { userMessage, assistantMessage } = await sendMessage(
+                content,
+                chatId,
             );
 
-        runInAction(() => {
-            this.root.chatStore.sync.moveToTop(chatId);
-            this.state.messages.push(userMessage, assistantMessage);
-        });
+            runInAction(() => {
+                this.root.chatStore.sync.moveToTop(chatId);
+                this.state.messages.push(userMessage, assistantMessage);
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'chatMessages/sendMessageNonOptimistic',
+            );
+        }
     }
 
     async findDoctors(chatId: number) {
-        const message = await this.root.settingsStore.async.run(
-            'chatMessages/findDoctors',
-            () => findDoctorsApi(chatId),
-        );
+        try {
+            this.root.settingsStore.sync.startLoading(
+                'chatMessages/findDoctors',
+            );
+            const message = await findDoctorsApi(chatId);
 
-        runInAction(() => {
-            this.root.chatStore.sync.moveToTop(chatId);
-            this.state.messages.push(message);
-        });
+            runInAction(() => {
+                this.root.chatStore.sync.moveToTop(chatId);
+                this.state.messages.push(message);
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'chatMessages/findDoctors',
+            );
+        }
     }
 }

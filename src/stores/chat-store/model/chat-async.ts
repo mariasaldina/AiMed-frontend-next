@@ -1,7 +1,12 @@
 import { RootStore } from '@/stores';
 import { ChatState } from './chat-state';
 import { ChatSync } from './chat-sync';
-import { createChat, deleteChat, getChats, renameChat } from '@/entities/chat/api';
+import {
+    createChat,
+    deleteChat,
+    getChats,
+    renameChat,
+} from '@/entities/chat/api';
 import { runInAction } from 'mobx';
 
 export class ChatAsync {
@@ -12,48 +17,69 @@ export class ChatAsync {
     ) {}
 
     async loadChats() {
-        const chats = await this.root.settingsStore.async.run(
-            'chats/loadChats',
-            getChats,
-        );
+        try {
+            this.root.settingsStore.sync.startLoading('chats/loadChats');
+            const chats = await getChats();
 
-        runInAction(() => {
-            this.state.chats = chats;
-        });
+            runInAction(() => {
+                this.state.chats = chats;
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading('chats/loadChats');
+        }
     }
 
     async addChat(title: string) {
-        const chat = await this.root.settingsStore.async.run('chats/addChat', () =>
-            createChat(title),
-        );
+        try {
+            this.root.settingsStore.sync.startLoading('chats/addChat');
+            const chat = await createChat(title);
 
-        runInAction(() => {
-            this.state.chats.unshift(chat);
-        });
+            runInAction(() => {
+                this.state.chats.unshift(chat);
+            });
 
-        return chat;
+            return chat;
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading('chats/addChat');
+        }
     }
 
     async deleteChat(chatId: number) {
-        await this.root.settingsStore.async.run('chats/deleteChat', () =>
-            deleteChat(chatId),
-        );
+        try {
+            this.root.settingsStore.sync.startLoading('chats/deleteChat');
+            await deleteChat(chatId);
 
-        runInAction(() => {
-            this.state.chats = this.state.chats.filter((c) => c.id !== chatId);
-        });
+            runInAction(() => {
+                this.state.chats = this.state.chats.filter(
+                    (c) => c.id !== chatId,
+                );
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading('chats/deleteChat');
+        }
     }
 
     async renameChat(chatId: number, title: string) {
-        await this.root.settingsStore.async.run('chats/renameChat', () =>
-            renameChat(chatId, title),
-        );
+        try {
+            this.root.settingsStore.sync.startLoading('chats/renameChat');
+            await renameChat(chatId, title);
 
-        runInAction(() => {
-            const chat = this.state.chats.find((c) => c.id === chatId);
-            if (chat) {
-                chat.title = title;
-            }
-        });
+            runInAction(() => {
+                const chat = this.state.chats.find((c) => c.id === chatId);
+                if (chat) {
+                    chat.title = title;
+                }
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading('chats/renameChat');
+        }
     }
 }

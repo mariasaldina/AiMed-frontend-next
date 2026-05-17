@@ -7,7 +7,7 @@ import { zod4Resolver } from 'mantine-form-zod-resolver';
 import Form from '@/shared/ui/Form';
 import { useRouter } from 'next/navigation';
 import { useStores } from '@/app/providers/StoreProvider';
-import { login } from '@/features/auth/api';
+import { observer } from 'mobx-react-lite';
 
 const loginSchema = z.object({
     username: z.string().min(1, 'Обязательное поле'),
@@ -16,9 +16,11 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
-export default function Login() {
+function Login() {
     const router = useRouter();
+
     const rootStore = useStores();
+    const { loading } = rootStore.settingsStore.state;
 
     const form = useForm({
         initialValues: {
@@ -29,13 +31,8 @@ export default function Login() {
     });
 
     const onSubmit = async (credentials: LoginFormValues) => {
-        try {
-            await login(credentials);
-            rootStore?.userStore.async.setUser();
-            router.push('/chats');
-        } catch (e) {
-            console.log(e);
-        }
+        await rootStore.userStore.async.login(credentials);
+        router.push('/home');
     };
 
     return (
@@ -50,7 +47,9 @@ export default function Login() {
                     {...form.getInputProps('password')}
                 />
 
-                <Button type="submit">Войти</Button>
+                <Button type="submit" loading={loading['user/login']}>
+                    Войти
+                </Button>
 
                 <Button
                     type="button"
@@ -63,3 +62,5 @@ export default function Login() {
         </Center>
     );
 }
+
+export default observer(Login);

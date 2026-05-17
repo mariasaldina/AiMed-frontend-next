@@ -1,12 +1,13 @@
 import { Badge, Flex, Paper, Stack, Text } from '@mantine/core';
-import { Doctor } from '../model/message.types';
-import { getExperience } from '../lib/experience-formatter';
+import { Doctor } from '@/entities/message/model/message.types';
+import { getExperience } from '@/entities/message/lib/experience-formatter';
+import InviteDoctorModal from './InviteDoctorModal';
 
-interface DoctorSuggestionsMessageProps {
+interface FindDoctorsMessageProps {
     doctors: Doctor[];
 }
 
-function DoctorSuggestionsMessage({ doctors }: DoctorSuggestionsMessageProps) {
+function FindDoctorsMessage({ doctors }: FindDoctorsMessageProps) {
     return (
         <Stack
             gap={5}
@@ -67,7 +68,7 @@ function DoctorSuggestionsMessage({ doctors }: DoctorSuggestionsMessageProps) {
                                 )}
                             </Stack>
 
-                            {/* <InviteDoctorModal doctorId={parseInt(d.userId)} /> */}
+                            <InviteDoctorModal doctorId={parseInt(d.userId)} />
                         </Flex>
                     </Paper>
                 ))}
@@ -76,4 +77,4 @@ function DoctorSuggestionsMessage({ doctors }: DoctorSuggestionsMessageProps) {
     );
 }
 
-export default DoctorSuggestionsMessage;
+export default FindDoctorsMessage;

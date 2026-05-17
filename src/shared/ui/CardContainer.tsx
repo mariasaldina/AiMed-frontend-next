@@ -1,10 +1,11 @@
 import { Center, Flex, Loader } from '@mantine/core';
 import type { ReactNode } from 'react';
 import ColoredCard from './ColoredCard';
+import { Status } from '../types/enums';
 
 interface Item {
     id: number | string;
-    status: 'APPROVED' | 'REJECTED' | 'PENDING' | 'CANCELLED';
+    status: Status;
     createdAt: string;
 }
 

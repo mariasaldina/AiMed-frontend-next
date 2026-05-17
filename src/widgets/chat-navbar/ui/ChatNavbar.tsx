@@ -10,12 +10,12 @@ import {
 import { ScrollArea, Stack } from '@mantine/core';
 import { IconSparkles } from '@tabler/icons-react';
 import { useState } from 'react';
-import ChatItem from './ChatNavbarItem';
 import { useParams, useRouter } from 'next/navigation';
 import { useStores } from '@/app/providers/StoreProvider';
 import { observer } from 'mobx-react-lite';
 import useChatCrud from '@/features/chat-crud/model/use-chat-crud';
-import ChatModal from './ChatModal';
+import ChatModal from '@/features/chat-crud/ui/ChatModal';
+import ChatItem from './ChatNavbarItem';
 
 interface ChatNavbarProps extends AppShellNavbarProps {
     onSelect: () => void;

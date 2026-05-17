@@ -29,7 +29,7 @@ function MessageInput({ chatId, showLoading = false }: MessageInputProps) {
         <form
             onSubmit={(e) => {
                 e.preventDefault();
-                sendMessage;
+                sendMessage();
             }}
             style={{ width: '100%' }}
         >

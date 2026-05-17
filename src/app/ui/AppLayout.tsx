@@ -1,11 +1,11 @@
 'use client';
 
-import ChatNavbar from '@/widgets/chat-navbar/ChatNavbar';
+import ChatNavbar from '@/widgets/chat-navbar/ui/ChatNavbar';
 import { AppShell } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
-import Header from '../header/Header';
+import Header from '@/widgets/header/ui/Header';
 
 export default function AppLayout({ children }: { children: ReactNode }) {
     const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);

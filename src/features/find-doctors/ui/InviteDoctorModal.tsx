@@ -1,7 +1,9 @@
 'use client';
 
+import { useStores } from '@/app/providers/StoreProvider';
 import { Button, Modal, Stack, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { observer } from 'mobx-react-lite';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
@@ -10,6 +12,9 @@ interface InviteDoctorModalProps {
 }
 
 function InviteDoctorModal({ doctorId }: InviteDoctorModalProps) {
+    const rootStore = useStores();
+    const { loading } = rootStore.settingsStore.state;
+
     const [opened, setOpened] = useState(false);
 
     const { chatId } = useParams();
@@ -24,9 +29,11 @@ function InviteDoctorModal({ doctorId }: InviteDoctorModalProps) {
     const onSubmit = async ({ content }: { content: string }) => {
         if (!parsedChatId) return;
 
-        // dispatch(
-        //     inviteDoctorThunk({ chatId: parsedChatId, doctorId, content }),
-        // );
+        rootStore.invitationStore.async.inviteDoctor(
+            parsedChatId,
+            doctorId,
+            content,
+        );
         form.reset();
         setOpened(false);
     };
@@ -49,7 +56,12 @@ function InviteDoctorModal({ doctorId }: InviteDoctorModalProps) {
                             label="Сообщение для специалиста"
                             {...form.getInputProps('content')}
                         />
-                        <Button type="submit">Отправить</Button>
+                        <Button
+                            type="submit"
+                            loading={loading['invitations/inviteDoctor']}
+                        >
+                            Отправить
+                        </Button>
                     </Stack>
                 </form>
             </Modal>
@@ -65,4 +77,4 @@ function InviteDoctorModal({ doctorId }: InviteDoctorModalProps) {
     );
 }
 
-export default InviteDoctorModal;
+export default observer(InviteDoctorModal);

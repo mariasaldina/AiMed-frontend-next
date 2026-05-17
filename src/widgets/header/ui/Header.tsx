@@ -12,6 +12,7 @@ import {
 import HeaderItem from './HeaderItem';
 import { useStores } from '@/app/providers/StoreProvider';
 import ProfileMenu from './ProfileMenu';
+import { observer } from 'mobx-react-lite';
 
 interface HeaderProps {
     navbarOpened: boolean;
@@ -22,11 +23,10 @@ interface HeaderProps {
 function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
     const rootStore = useStores();
     const { user } = rootStore.userStore.state;
-    // const { notifications } = useAppSelector(
-    //     (state) => state.notificationReducer,
-    // );
+    const { unread } = rootStore.notificationStore.state;
+    console.log(unread)
 
-    // const hasUnread = notifications.unread.length !== 0;
+    const hasUnread = unread.length !== 0;
 
     return (
         <Flex
@@ -49,7 +49,7 @@ function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
                 w="100%"
                 h="100%"
             >
-                <HeaderItem to="/" label="Главная" icon={<IconHome />} />
+                <HeaderItem to="/home" label="Главная" icon={<IconHome />} />
                 {user && user.role === 'PATIENT' && (
                     <HeaderItem
                         to="/chats"
@@ -66,7 +66,7 @@ function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
                         icon={<IconStethoscope />}
                     />
                 )}
-                {/* {user && (
+                {user && (
                     <HeaderItem
                         to="/notifications"
                         label="Уведомления"
@@ -82,7 +82,7 @@ function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
                             </Indicator>
                         }
                     />
-                )} */}
+                )}
                 {user && <ProfileMenu />}
                 {!user && (
                     <HeaderItem to="/login" label="Вход" icon={<IconLogin />} />
@@ -99,4 +99,4 @@ function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
     );
 }
 
-export default Header;
+export default observer(Header);

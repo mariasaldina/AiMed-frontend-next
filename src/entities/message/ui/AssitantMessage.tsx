@@ -1,4 +1,4 @@
-import type { UrgencyStatus } from "../types/chat"
+import { UrgencyStatus } from "@/shared/types/enums"
 import { Divider, Group, List, Paper, Stack, Text, useMantineTheme } from "@mantine/core"
 import { IconAlertHexagonFilled, IconClipboardListFilled, IconStethoscope, IconZoomQuestionFilled } from "@tabler/icons-react"
 

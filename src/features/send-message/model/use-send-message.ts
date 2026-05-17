@@ -31,6 +31,8 @@ const useSendMessage = (
         if (!chatId) {
             const chat = await rootStore.chatStore.async.addChat('Новый чат');
 
+            if (!chat) return;
+
             await rootStore.messageStore.async.sendMessageNonOptimistic(
                 content,
                 chat.id,

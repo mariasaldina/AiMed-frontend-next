@@ -1,12 +1,16 @@
 import { MantineProvider } from '@mantine/core';
 import type { Metadata } from 'next';
 import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+import 'dayjs/locale/ru';
+import '@fontsource/manrope/400.css';
+import '@fontsource/manrope/500.css';
+import '@fontsource/manrope/600.css';
 import { StoreProvider } from './providers/StoreProvider';
 import UserInitializer from './providers/UserInitializer';
 import AuthWrapper from '@/widgets/auth-wrapper/AuthWrapper';
 import theme from './providers/theme';
 import CommonWrapper from '@/widgets/common-wrapper/CommonWrapper';
-import AppLayout from '@/widgets/app-layout/AppLayout';
 
 export const metadata: Metadata = {
     title: 'AiMed',
@@ -29,9 +33,7 @@ export default function RootLayout({
                     <StoreProvider>
                         <UserInitializer>
                             <CommonWrapper>
-                                <AuthWrapper>
-                                    <AppLayout>{children}</AppLayout>
-                                </AuthWrapper>
+                                <AuthWrapper>{children}</AuthWrapper>
                             </CommonWrapper>
                         </UserInitializer>
                     </StoreProvider>

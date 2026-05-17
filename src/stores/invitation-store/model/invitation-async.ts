@@ -1,12 +1,11 @@
 import { runInAction } from 'mobx';
-import {
-    cancelInvitation,
-    getInvitations,
-    sendDoctorsResponse,
-} from '@/features/invitations/api/invitations';
+import { cancelInvitation } from '@/features/cancel-invitation/api';
 import { InvitationState } from './invitation-state';
 import { InvitationSync } from './invitation-sync';
 import { RootStore } from '@/stores';
+import { getInvitations } from '@/entities/invitation/api';
+import { sendDoctorsResponse } from '@/features/send-doctors-response/api';
+import { inviteDoctor } from '@/features/invite-doctor/api';
 
 export class InvitationAsync {
     constructor(
@@ -15,43 +14,89 @@ export class InvitationAsync {
         public sync: InvitationSync,
     ) {}
 
-    async loadInvitations() {
-        const invitations = await this.root.settingsStore.async.run(
-            'invitations/loadInvitations',
-            getInvitations,
-        );
+    async inviteDoctor(chatId: number, doctorId: number, content: string) {
+        try {
+            this.root.settingsStore.sync.startLoading(
+                'invitations/inviteDoctor',
+            );
+            const message = await inviteDoctor(chatId, doctorId, content);
 
-        runInAction(() => {
-            this.state.invitations = invitations;
-        });
+            runInAction(() => {
+                this.root.chatStore.sync.moveToTop(chatId);
+                this.root.messageStore.sync.addMessage(message);
+            });
+
+            console.log('invited: ', doctorId);
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'invitations/inviteDoctor',
+            );
+        }
+    }
+
+    async loadInvitations() {
+        try {
+            this.root.settingsStore.sync.startLoading(
+                'invitations/loadInvitations',
+            );
+            const invitations = await getInvitations();
+
+            runInAction(() => {
+                this.state.invitations = invitations;
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'invitations/loadInvitations',
+            );
+        }
     }
 
     async sendDoctorsResponse(
         status: 'APPROVED' | 'REJECTED',
         invitationId: number,
     ) {
-        await this.root.settingsStore.async.run(
-            'invitations/sendDoctorsResponse',
-            () => sendDoctorsResponse(status, invitationId),
-        );
-
-        runInAction(() => {
-            this.state.invitations = this.state.invitations.map((n) =>
-                n.id === invitationId ? { ...n, status } : n,
+        try {
+            this.root.settingsStore.sync.startLoading(
+                'invitations/sendDoctorsResponse',
             );
-        });
+            await sendDoctorsResponse(status, invitationId);
+
+            runInAction(() => {
+                this.state.invitations = this.state.invitations.map((n) =>
+                    n.id === invitationId ? { ...n, status } : n,
+                );
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'invitations/sendDoctorsResponse',
+            );
+        }
     }
 
     async cancelInvitation(invitationId: number) {
-        await this.root.settingsStore.async.run(
-            'invitations/cancelInvitation',
-            () => cancelInvitation(invitationId),
-        );
-
-        runInAction(() => {
-            this.state.invitations = this.state.invitations.map((n) =>
-                n.id === invitationId ? { ...n, status: 'CANCELLED' } : n,
+        try {
+            this.root.settingsStore.sync.startLoading(
+                'invitations/cancelInvitation',
             );
-        });
+            await cancelInvitation(invitationId);
+
+            runInAction(() => {
+                this.state.invitations = this.state.invitations.map((n) =>
+                    n.id === invitationId ? { ...n, status: 'CANCELLED' } : n,
+                );
+            });
+        } catch (e: any) {
+            this.root.settingsStore.sync.setError(e.message);
+        } finally {
+            this.root.settingsStore.sync.stopLoading(
+                'invitations/cancelInvitation',
+            );
+        }
     }
 }

@@ -1,4 +1,4 @@
-import { UserRole } from '@/entities/user/model/user.types';
+import { UserRole } from "@/shared/types/enums";
 
 export interface LoginCredentialsDto {
     username: string;

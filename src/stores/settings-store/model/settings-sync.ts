@@ -10,6 +10,18 @@ export class SettingsSync {
         makeAutoObservable(this);
     }
 
+    startLoading(key: string) {
+        this.state.loading[key] = true;
+    }
+
+    stopLoading(key: string) {
+        this.state.loading[key] = false;
+    }
+
+    setError(message: string) {
+        this.state.errorModal = { open: true, message };
+    }
+
     clearError() {
         this.state.errorModal = { open: false, message: null };
     }

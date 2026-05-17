@@ -1,18 +1,17 @@
 'use client';
 
-import { useRef } from 'react';
+import { ReactNode, useRef } from 'react';
 import { Box, Center, Flex, Loader, ScrollArea } from '@mantine/core';
 import TypingIndicator from '@/shared/ui/TypingIndicator';
 import { useParams } from 'next/navigation';
 import { useStores } from '@/app/providers/StoreProvider';
 import { observer } from 'mobx-react-lite';
 import { useInfiniteScroll } from '@/shared/hooks/use-infinite-scroll';
-import MessageList from '@/widgets/message-list/MessageList';
-import MessageInput from '@/widgets/message-input/ui/MessageInput';
-import { useLoadMessages } from '@/features/load-messages/use-load-messages';
+import MessageInput from './MessageInput';
+import { useLoadMessages } from '@/features/load-messages/model/use-load-messages';
 import { useChatAutoScroll } from '../model/use-chat-auto-scroll';
 
-function ChatWindow() {
+function ChatWindow({ children }: { children: ReactNode }) {
     const { chatId } = useParams();
     const parsedChatId = chatId ? Number(chatId) : null;
 
@@ -23,7 +22,7 @@ function ChatWindow() {
     const sending =
         loading['chatMessages/sendMessage'] ||
         loading['chatMessages/findDoctors'] ||
-        loading['chatMessages/inviteDoctor'];
+        loading['invitations/inviteDoctor'];
 
     const scrollableRef = useRef<HTMLDivElement | null>(null);
 
@@ -71,7 +70,7 @@ function ChatWindow() {
                             </Center>
                         </Box>
                     )}
-                    <MessageList />
+                    {children}
                     {sending ? (
                         <Box p={{ base: 'md', sm: 'xl' }}>
                             <TypingIndicator />
