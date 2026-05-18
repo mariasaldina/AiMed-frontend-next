@@ -7,6 +7,12 @@ import { Notification } from '@/entities/notification/model/notification.types';
 import StatusMessage from '@/shared/ui/StatusMessage';
 import CardContainer from '@/shared/ui/CardContainer';
 import { observer } from 'mobx-react-lite';
+import { Metadata } from 'next';
+
+export const notificationsMetadata: Metadata = {
+    title: 'Уведомления',
+    description: 'Страница уведомлений пользователя',
+};
 
 const NotificationList = () => {
     const rootStore = useStores();

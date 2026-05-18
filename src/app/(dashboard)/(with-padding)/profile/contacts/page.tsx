@@ -8,6 +8,12 @@ import { useEditable } from '../layout';
 import { useStores } from '@/app/providers/StoreProvider';
 import FormTemplate from '@/shared/ui/FormTemplate';
 import { observer } from 'mobx-react-lite';
+import { Metadata } from 'next';
+
+export const contactsMetadata: Metadata = {
+    title: 'Контакты',
+    description: 'Страница редактирования контактов',
+};
 
 const emailSchema = z
     .string()

@@ -5,6 +5,12 @@ import PatientProfileForm from '@/widgets/patient-profile/ui/PatientProfileForm'
 import DoctorProfileForm from '@/widgets/doctor-profile/ui/DoctorProfileForm';
 import { useEditable } from '../layout';
 import { observer } from 'mobx-react-lite';
+import { Metadata } from 'next';
+
+export const questionnaireMetadata: Metadata = {
+    title: 'Анкета',
+    description: 'Страница редактирования анкеты пользователя',
+};
 
 const Questionnaire = () => {
     const { isEditing, close } = useEditable();

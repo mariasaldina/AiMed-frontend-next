@@ -6,6 +6,11 @@ import { useDisclosure } from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 import Header from '@/widgets/header/ui/Header';
+import { Metadata } from 'next';
+
+export const dashboardMetadata: Metadata = {
+    robots: { index: false, follow: true },
+};
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
     const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);

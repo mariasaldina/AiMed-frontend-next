@@ -1,5 +1,4 @@
 import { MantineProvider } from '@mantine/core';
-import type { Metadata } from 'next';
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import 'dayjs/locale/ru';
@@ -9,16 +8,11 @@ import '@fontsource/manrope/600.css';
 import { StoreProvider } from './providers/StoreProvider';
 import UserInitializer from './providers/UserInitializer';
 import AuthWrapper from '@/widgets/auth-wrapper/AuthWrapper';
-import theme from './providers/theme';
+import theme from '../shared/config/theme/mantine-theme';
 import CommonWrapper from '@/widgets/common-wrapper/CommonWrapper';
+import { globalMetadata } from '@/shared/config/seo/global';
 
-export const metadata: Metadata = {
-    title: 'AiMed',
-    description: 'Your AI med assistant',
-    icons: {
-        icon: '/icon.svg',
-    },
-};
+export const metadata = globalMetadata;
 
 export default function RootLayout({
     children,
@@ -27,7 +21,6 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ru">
-            <head></head>
             <body>
                 <MantineProvider theme={theme}>
                     <StoreProvider>

@@ -8,6 +8,12 @@ import CardContainer from '@/shared/ui/CardContainer';
 import PatientInvitationCard from '@/widgets/patient-invitation-card/ui/PatientInvitationCard';
 import DoctorInvitationCard from '@/widgets/doctor-invitation-card/ui/DoctorInvitationCard';
 import { observer } from 'mobx-react-lite';
+import { Metadata } from 'next';
+
+export const invitationsMetadata: Metadata = {
+    title: 'Приглашения',
+    description: 'Заявки от пациентов и ответы врачей',
+};
 
 const InvitationList = () => {
     const rootStore = useStores();

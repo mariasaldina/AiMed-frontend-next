@@ -8,6 +8,17 @@ import Form from '@/shared/ui/Form';
 import { useRouter } from 'next/navigation';
 import { useStores } from '@/app/providers/StoreProvider';
 import { observer } from 'mobx-react-lite';
+import { Metadata } from 'next';
+
+export const loginMetadata: Metadata = {
+    title: 'Вход',
+    description: 'Страница авторизации',
+    openGraph: {
+        title: 'Авторизация',
+        description: 'Войдите в аккаунт',
+        url: '/login',
+    },
+};
 
 const loginSchema = z.object({
     username: z.string().min(1, 'Обязательное поле'),

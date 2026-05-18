@@ -4,6 +4,11 @@ import { useRouter } from 'next/navigation';
 import { useStores } from '../providers/StoreProvider';
 import { ReactNode, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
+import { Metadata } from 'next';
+
+export const authMetadata: Metadata = {
+    robots: { index: false, follow: true },
+};
 
 function ReverseAuthGuard({ children }: { children: ReactNode }) {
     const rootStore = useStores();

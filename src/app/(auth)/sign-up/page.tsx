@@ -19,6 +19,17 @@ import Form from '@/shared/ui/Form';
 import { useRouter } from 'next/navigation';
 import { useStores } from '@/app/providers/StoreProvider';
 import { observer } from 'mobx-react-lite';
+import { Metadata } from 'next';
+
+export const signUpMetadata: Metadata = {
+    title: 'Регистрация',
+    description: 'Страница регистрации',
+    openGraph: {
+        title: 'Регистрация',
+        description: 'Создайте аккаунт',
+        url: '/sign-up',
+    },
+};
 
 const step1Schema = z.object({
     username: z.string().min(1, 'Обязательное поле'),

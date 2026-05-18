@@ -1,10 +1,15 @@
 'use client';
 
 import { useStores } from '@/app/providers/StoreProvider';
-import { Anchor, Center, Flex, Stack, Text, Title } from '@mantine/core';
-import { IconFocus2, IconSparklesFilled } from '@tabler/icons-react';
+import { Center, Flex, Text, Title } from '@mantine/core';
 import { observer } from 'mobx-react-lite';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const homeMetadata: Metadata = {
+    title: 'Личный кабинет',
+    description: 'Стартовая страница'
+};
 
 function HomePage() {
     const rootStore = useStores();
@@ -12,7 +17,12 @@ function HomePage() {
 
     return (
         <Center h={'100dvh'}>
-            <Flex direction={'column'} align={'flex-end'} gap='30' px={{ base: 40}}>
+            <Flex
+                direction={'column'}
+                align={'flex-end'}
+                gap="30"
+                px={{ base: 40 }}
+            >
                 <Title
                     fz={{ base: 56, sm: 70 }}
                     fw={700}
