@@ -24,7 +24,6 @@ function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
     const rootStore = useStores();
     const { user } = rootStore.userStore.state;
     const { unread } = rootStore.notificationStore.state;
-    console.log(unread)
 
     const hasUnread = unread.length !== 0;
 

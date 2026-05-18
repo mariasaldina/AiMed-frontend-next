@@ -26,6 +26,7 @@ export class ChatAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('chats/loadChats');
         }
@@ -43,6 +44,7 @@ export class ChatAsync {
             return chat;
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('chats/addChat');
         }
@@ -60,6 +62,7 @@ export class ChatAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('chats/deleteChat');
         }
@@ -78,6 +81,7 @@ export class ChatAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('chats/renameChat');
         }

@@ -42,8 +42,12 @@ function Login() {
     });
 
     const onSubmit = async (credentials: LoginFormValues) => {
-        await rootStore.userStore.async.login(credentials);
-        router.push('/home');
+        try {
+            await rootStore.userStore.async.login(credentials);
+            router.push('/home');
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (

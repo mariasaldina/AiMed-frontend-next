@@ -65,8 +65,12 @@ const Contacts = () => {
     };
 
     const onSubmit = async (contacts: FormValues) => {
-        await rootStore.userStore.async.updateContacts(contacts);
-        close();
+        try {
+            await rootStore.userStore.async.updateContacts(contacts);
+            close();
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (

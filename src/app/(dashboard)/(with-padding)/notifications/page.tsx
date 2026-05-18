@@ -20,10 +20,14 @@ const NotificationList = () => {
     const { loading } = rootStore.settingsStore.state;
 
     useEffect(() => {
-        rootStore.notificationStore.async.loadNotifications();
+        rootStore.notificationStore.async
+            .loadNotifications()
+            .catch((e) => console.log(e));
 
         return () => {
-            rootStore.notificationStore.async.readNotifications();
+            rootStore.notificationStore.async
+                .readNotifications()
+                .catch((e) => console.log(e));
         };
     }, []);
 

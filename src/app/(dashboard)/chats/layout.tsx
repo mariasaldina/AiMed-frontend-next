@@ -13,7 +13,7 @@ export default function ChatLayout({ children }: { children: ReactNode }) {
     const rootStore = useStores();
 
     useEffect(() => {
-        rootStore.chatStore.async.loadChats();
+        rootStore.chatStore.async.loadChats().catch((e) => console.log(e));
     }, []);
 
     return children;

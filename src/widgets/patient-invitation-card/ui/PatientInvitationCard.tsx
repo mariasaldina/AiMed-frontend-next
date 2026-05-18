@@ -23,7 +23,9 @@ function PatientInvitationCard({ invitation }: PatientInvitationCardProps) {
 
     const handleCancel = () => {
         setClicked(true);
-        rootStore.invitationStore.async.cancelInvitation(invitation.id);
+        rootStore.invitationStore.async
+            .cancelInvitation(invitation.id)
+            .catch((e) => console.log(e));
     };
 
     return (

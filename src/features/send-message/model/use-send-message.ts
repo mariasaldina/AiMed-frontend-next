@@ -24,7 +24,15 @@ const useSendMessage = (
         rootStore.messageStore.sync.addMessage(tempUserMessage);
         setContent('');
 
-        await rootStore.messageStore.async.sendMessage(content, chatId, tempId);
+        try {
+            await rootStore.messageStore.async.sendMessage(
+                content,
+                chatId,
+                tempId,
+            );
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     const handleSend = async () => {
@@ -33,16 +41,24 @@ const useSendMessage = (
 
             if (!chat) return;
 
-            await rootStore.messageStore.async.sendMessageNonOptimistic(
-                content,
-                chat.id,
-            );
-            router.push(`/chats/${chat.id}`);
+            try {
+                await rootStore.messageStore.async.sendMessageNonOptimistic(
+                    content,
+                    chat.id,
+                );
+                router.push(`/chats/${chat.id}`);
+            } catch (e) {
+                console.log(e);
+            }
 
             return;
         }
 
-        await sendMessage(chatId);
+        try {
+            await sendMessage(chatId);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return handleSend;

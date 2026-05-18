@@ -36,6 +36,7 @@ export class MessageAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'chatMessages/loadMessages',
@@ -61,6 +62,7 @@ export class MessageAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'chatMessages/sendMessage',
@@ -84,6 +86,7 @@ export class MessageAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'chatMessages/sendMessageNonOptimistic',
@@ -104,6 +107,7 @@ export class MessageAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'chatMessages/findDoctors',

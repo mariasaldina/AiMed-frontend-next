@@ -56,11 +56,15 @@ function PatientProfileForm({ isEditing, onCancel }: PatientProfileFormProps) {
     };
 
     const onSubmit = async (formData: FormValues) => {
-        await rootStore.userStore.async.editPatientProfile(
-            formData.fullName,
-            formData,
-        );
-        onCancel();
+        try {
+            await rootStore.userStore.async.editPatientProfile(
+                formData.fullName,
+                formData,
+            );
+            onCancel();
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (

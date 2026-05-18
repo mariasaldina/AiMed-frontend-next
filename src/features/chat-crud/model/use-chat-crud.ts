@@ -12,8 +12,12 @@ const useChatCrud = (displayedChat: number | null) => {
     const rootStore = useStores();
 
     const handleAdd = async (title: string) => {
-        const chat = await rootStore.chatStore.async.addChat(title);
-        if (chat) router.push(`/chats/${chat.id}`);
+        try {
+            const chat = await rootStore.chatStore.async.addChat(title);
+            router.push(`/chats/${chat.id}`);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     const handleDelete = async (chatId: number) => {
@@ -24,6 +28,7 @@ const useChatCrud = (displayedChat: number | null) => {
                 router.push('/chats');
             }
         } catch (e) {
+            console.log(e);
         } finally {
             setDeleted(null);
         }
@@ -34,6 +39,7 @@ const useChatCrud = (displayedChat: number | null) => {
         try {
             await rootStore.chatStore.async.renameChat(chatId, title);
         } catch (e) {
+            console.log(e);
         } finally {
             setRenamed(null);
         }

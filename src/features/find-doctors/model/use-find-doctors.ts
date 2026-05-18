@@ -5,7 +5,11 @@ const useFindDoctors = (chatId: number | null | undefined) => {
 
     const findDoctors = async () => {
         if (!chatId) return;
-        await rootStore.messageStore.async.findDoctors(chatId);
+        try {
+            await rootStore.messageStore.async.findDoctors(chatId);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return findDoctors;

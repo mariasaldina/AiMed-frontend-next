@@ -84,8 +84,12 @@ function SignUp() {
     });
 
     const onSubmit = async (credentials: SignUpFormValues) => {
-        await rootStore.userStore.async.signUp(credentials);
-        router.push('/home');
+        try {
+            await rootStore.userStore.async.signUp(credentials);
+            router.push('/home');
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (

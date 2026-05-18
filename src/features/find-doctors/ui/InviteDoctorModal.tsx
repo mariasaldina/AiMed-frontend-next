@@ -29,13 +29,17 @@ function InviteDoctorModal({ doctorId }: InviteDoctorModalProps) {
     const onSubmit = async ({ content }: { content: string }) => {
         if (!parsedChatId) return;
 
-        rootStore.invitationStore.async.inviteDoctor(
-            parsedChatId,
-            doctorId,
-            content,
-        );
-        form.reset();
-        setOpened(false);
+        try {
+            await rootStore.invitationStore.async.inviteDoctor(
+                parsedChatId,
+                doctorId,
+                content,
+            );
+            form.reset();
+            setOpened(false);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (

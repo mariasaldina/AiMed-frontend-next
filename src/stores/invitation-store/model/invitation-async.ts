@@ -29,6 +29,7 @@ export class InvitationAsync {
             console.log('invited: ', doctorId);
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'invitations/inviteDoctor',
@@ -48,6 +49,7 @@ export class InvitationAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'invitations/loadInvitations',
@@ -72,6 +74,7 @@ export class InvitationAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'invitations/sendDoctorsResponse',
@@ -93,6 +96,7 @@ export class InvitationAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'invitations/cancelInvitation',

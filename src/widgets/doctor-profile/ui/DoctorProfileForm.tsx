@@ -55,7 +55,6 @@ function DoctorProfileForm({ isEditing, onCancel }: DoctorProfileFormProps) {
             } catch (e) {
                 setSpecializations([]);
                 console.log(e);
-            } finally {
             }
         };
 
@@ -93,11 +92,15 @@ function DoctorProfileForm({ isEditing, onCancel }: DoctorProfileFormProps) {
     };
 
     const onSubmit = async (formData: FormValues) => {
-        await rootStore.userStore.async.editDoctorProfile(
-            formData.fullName,
-            formData,
-        );
-        onCancel();
+        try {
+            await rootStore.userStore.async.editDoctorProfile(
+                formData.fullName,
+                formData,
+            );
+            onCancel();
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (

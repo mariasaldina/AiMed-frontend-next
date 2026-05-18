@@ -32,7 +32,10 @@ function ChatWindow({ children }: { children: ReactNode }) {
     const { onScroll } = useInfiniteScroll(
         scrollableRef,
         Boolean(!parsedChatId || !hasMore),
-        () => rootStore.messageStore.async.loadMessages(parsedChatId),
+        () =>
+            rootStore.messageStore.async
+                .loadMessages(parsedChatId)
+                .catch((e) => console.log(e)),
         loading['chatMessages/loadMessages'],
     );
 

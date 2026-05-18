@@ -27,6 +27,7 @@ export class NotificationAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'notifications/loadNotifications',
@@ -47,6 +48,7 @@ export class NotificationAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading(
                 'notifications/readNotifications',

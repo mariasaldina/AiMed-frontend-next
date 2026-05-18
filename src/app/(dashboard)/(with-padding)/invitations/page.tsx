@@ -22,7 +22,9 @@ const InvitationList = () => {
     const invitations = rootStore.invitationStore.state.invitations;
 
     useEffect(() => {
-        rootStore.invitationStore.async.loadInvitations();
+        rootStore.invitationStore.async
+            .loadInvitations()
+            .catch((e) => console.log(e));
     }, []);
 
     const elementHandler = (i: Invitation) => {

@@ -33,6 +33,7 @@ export class UserAsync {
             await this.setUser();
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('user/login');
         }
@@ -45,6 +46,7 @@ export class UserAsync {
             await this.setUser();
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('user/signUp');
         }
@@ -65,6 +67,7 @@ export class UserAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('user/setUser');
         }
@@ -81,6 +84,7 @@ export class UserAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('user/logout');
         }
@@ -96,6 +100,7 @@ export class UserAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('user/editDoctorProfile');
         }
@@ -113,6 +118,7 @@ export class UserAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('user/editPatientProfile');
         }
@@ -129,6 +135,7 @@ export class UserAsync {
             });
         } catch (e: any) {
             this.root.settingsStore.sync.setError(e.message);
+            throw e;
         } finally {
             this.root.settingsStore.sync.stopLoading('user/updateContacts');
         }

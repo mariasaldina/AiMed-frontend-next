@@ -28,18 +28,16 @@ function DoctorInvitationCard({ invitation }: DoctorInvitationCardProps) {
 
     const handleApprove = async () => {
         setClicked('APPROVED');
-        rootStore.invitationStore.async.sendDoctorsResponse(
-            'APPROVED',
-            invitation.id,
-        );
+        rootStore.invitationStore.async
+            .sendDoctorsResponse('APPROVED', invitation.id)
+            .catch((e) => console.log(e));
     };
 
     const handleReject = async () => {
         setClicked('REJECTED');
-        rootStore.invitationStore.async.sendDoctorsResponse(
-            'REJECTED',
-            invitation.id,
-        );
+        rootStore.invitationStore.async
+            .sendDoctorsResponse('REJECTED', invitation.id)
+            .catch((e) => console.log(e));
     };
 
     return (
