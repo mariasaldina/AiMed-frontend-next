@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 
 export const useLoadMessages = (chatId: number | null) => {
     const router = useRouter();

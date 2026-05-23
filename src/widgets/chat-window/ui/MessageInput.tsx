@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Flex, Textarea } from '@mantine/core';
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import useSendMessage from '@/features/send-message/model/use-send-message';

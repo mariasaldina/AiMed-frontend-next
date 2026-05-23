@@ -1,6 +1,6 @@
 'use client';
 
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import { Button, Menu, useMatches } from '@mantine/core';
 import { IconLogout, IconUser } from '@tabler/icons-react';
 import Link from 'next/link';

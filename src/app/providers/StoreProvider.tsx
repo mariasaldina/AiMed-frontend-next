@@ -1,9 +1,8 @@
 'use client';
 
+import { StoresContext } from '@/shared/hooks/use-stores';
 import { RootStore } from '@/shared/stores';
-import { createContext, useContext, useState } from 'react';
-
-export const StoresContext = createContext<RootStore | null>(null);
+import { useState } from 'react';
 
 export function StoreProvider({ children }: { children: React.ReactNode }) {
     const [store] = useState(() => new RootStore());
@@ -14,13 +13,3 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         </StoresContext.Provider>
     );
 }
-
-export const useStores = () => {
-    const store = useContext(StoresContext);
-
-    if (!store) {
-        throw new Error('No Root Store');
-    }
-
-    return store;
-};

@@ -1,7 +1,7 @@
 'use client';
 
 import { Flex } from '@mantine/core';
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import { observer } from 'mobx-react-lite';
 import UserMessage from '@/entities/message/ui/UserMessage';
 import AssistantMessage from '@/entities/message/ui/AssitantMessage';

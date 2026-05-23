@@ -1,6 +1,6 @@
 'use client';
 
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import { Button, Modal, Stack, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { observer } from 'mobx-react-lite';

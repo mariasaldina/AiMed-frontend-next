@@ -11,7 +11,7 @@ import { ScrollArea, Stack } from '@mantine/core';
 import { IconSparkles } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import { observer } from 'mobx-react-lite';
 import useChatCrud from '@/features/chat-crud/model/use-chat-crud';
 import ChatModal from '@/features/chat-crud/ui/ChatModal';

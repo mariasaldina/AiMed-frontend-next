@@ -10,7 +10,7 @@ import {
     IconUserPlus,
 } from '@tabler/icons-react';
 import HeaderItem from './HeaderItem';
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import ProfileMenu from './ProfileMenu';
 import { observer } from 'mobx-react-lite';
 

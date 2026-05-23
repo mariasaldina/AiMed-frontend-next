@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import { useRouter } from 'next/navigation';
 import { observer } from 'mobx-react-lite';
 

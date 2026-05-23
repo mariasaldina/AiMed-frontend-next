@@ -1,4 +1,4 @@
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import { Message } from '@/entities/message/model/message.types';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';

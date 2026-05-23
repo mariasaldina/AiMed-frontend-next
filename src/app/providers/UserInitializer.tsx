@@ -1,7 +1,7 @@
 'use client';
 
+import { useStores } from '@/shared/hooks/use-stores';
 import { ReactNode, useEffect } from 'react';
-import { useStores } from './StoreProvider';
 
 export default function UserInitializer({ children }: { children: ReactNode }) {
     const store = useStores();

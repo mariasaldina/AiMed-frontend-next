@@ -4,7 +4,7 @@ import { ReactNode, useRef } from 'react';
 import { Box, Center, Flex, Loader, ScrollArea } from '@mantine/core';
 import TypingIndicator from '@/shared/ui/TypingIndicator';
 import { useParams } from 'next/navigation';
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import { observer } from 'mobx-react-lite';
 import { useInfiniteScroll } from '@/shared/hooks/use-infinite-scroll';
 import MessageInput from './MessageInput';

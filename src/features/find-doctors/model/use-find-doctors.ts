@@ -1,4 +1,4 @@
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 
 const useFindDoctors = (chatId: number | null | undefined) => {
     const rootStore = useStores();

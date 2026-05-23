@@ -5,7 +5,7 @@ import { useState } from 'react';
 import ChatModal from '@/features/chat-crud/ui/ChatModal';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
 import { Chat } from '@/entities/chat/model/chat.types';
-import { useStores } from '@/app/providers/StoreProvider';
+import { useStores } from '@/shared/hooks/use-stores';
 import { observer } from 'mobx-react-lite';
 
 interface ChatNavbarItemProps {
