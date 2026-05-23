@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /sign-up
+Disallow: /chats
+Disallow: /profile
+Disallow: /home
+Disallow: /invitations
+Disallow: /notifications
+
+Sitemap: http://localhost:3000/sitemap.xml

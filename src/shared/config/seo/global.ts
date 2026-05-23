@@ -1,26 +1,27 @@
 import { Metadata } from 'next';
-import { SEO_CONSTANTS } from './constants';
 
 export const globalMetadata: Metadata = {
-    generator: SEO_CONSTANTS.generator,
-    applicationName: SEO_CONSTANTS.shortName,
+    generator: 'Next.js',
+    applicationName: 'AiMed',
     title: {
-        default: SEO_CONSTANTS.shortName,
-        template: `%s | ${SEO_CONSTANTS.shortName}`,
+        default: 'AiMed',
+        template: `%s | AiMed`,
     },
-    description: 'Чат с медицинским ИИ-ассистентом, анализ симптомов и подбор врачей',
+    description:
+        'Чат с медицинским ИИ-ассистентом, анализ симптомов и подбор врачей',
     icons: {
-        icon: SEO_CONSTANTS.favicon,
+        icon: '/icon.svg',
     },
-    metadataBase: new URL(SEO_CONSTANTS.baseUrl),
+    metadataBase: new URL('http://localhost:3000'),
     alternates: {
-        canonical: SEO_CONSTANTS.baseUrl,
+        canonical: 'http://localhost:3000',
     },
     openGraph: {
-        title: SEO_CONSTANTS.shortName,
-        description: 'Спросите о своих симптомах ИИ-ассистента и подберите врача в пару кликов',
-        url: SEO_CONSTANTS.baseUrl,
-        siteName: SEO_CONSTANTS.shortName,
+        title: 'AiMed',
+        description:
+            'Спросите о своих симптомах ИИ-ассистента и подберите врача в пару кликов',
+        url: 'http://localhost:3000',
+        siteName: 'AiMed',
         locale: 'ru_RU',
         type: 'website',
         images: [
@@ -28,7 +29,7 @@ export const globalMetadata: Metadata = {
                 url: '/AiMed.png',
                 width: 1200,
                 height: 630,
-                alt: SEO_CONSTANTS.name,
+                alt: 'AiMed - Your Smart Medical Assistant',
             },
         ],
     },

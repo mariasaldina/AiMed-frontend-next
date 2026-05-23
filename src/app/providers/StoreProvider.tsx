@@ -1,6 +1,6 @@
 'use client';
 
-import { RootStore } from '@/stores';
+import { RootStore } from '@/shared/stores';
 import { createContext, useContext, useState } from 'react';
 
 export const StoresContext = createContext<RootStore | null>(null);

@@ -1,10 +1,8 @@
-import { SEO_CONSTANTS } from './constants';
-
 export const schemaOrg = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'AiMed',
-    url: SEO_CONSTANTS.baseUrl,
+    url: 'http://localhost:3000',
     description:
         'Чат с медицинским ИИ-ассистентом, анализ симптомов и подбор врачей',
     applicationCategory: 'HealthApplication',
@@ -14,5 +12,5 @@ export const schemaOrg = {
         price: '0',
         priceCurrency: 'RUB',
     },
-    image: `${SEO_CONSTANTS.baseUrl}/AiMed.png`,
+    image: `'http://localhost:3000'/AiMed.png`,
 };
