@@ -12,7 +12,6 @@ import {
 import HeaderItem from './HeaderItem';
 import { useStores } from '@/shared/hooks/use-stores';
 import ProfileMenu from './ProfileMenu';
-import { observer } from 'mobx-react-lite';
 
 interface HeaderProps {
     navbarOpened: boolean;
@@ -20,7 +19,7 @@ interface HeaderProps {
     toggleNavbar: () => void;
 }
 
-function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
+export function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
     const rootStore = useStores();
     const { user } = rootStore.userStore.state;
     const { unread } = rootStore.notificationStore.state;
@@ -97,5 +96,3 @@ function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
         </Flex>
     );
 }
-
-export default observer(Header);

@@ -12,7 +12,6 @@ import { IconSparkles } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useStores } from '@/shared/hooks/use-stores';
-import { observer } from 'mobx-react-lite';
 import useChatCrud from '@/features/chat-crud/model/use-chat-crud';
 import ChatModal from '@/features/chat-crud/ui/ChatModal';
 import ChatItem from './ChatNavbarItem';
@@ -21,7 +20,7 @@ interface ChatNavbarProps extends AppShellNavbarProps {
     onSelect: () => void;
 }
 
-function ChatNavbar({ onSelect }: ChatNavbarProps) {
+export function ChatNavbar({ onSelect }: ChatNavbarProps) {
     const params = useParams();
     if (!params) {
         return null;
@@ -98,5 +97,3 @@ function ChatNavbar({ onSelect }: ChatNavbarProps) {
         </Stack>
     );
 }
-
-export default observer(ChatNavbar);
