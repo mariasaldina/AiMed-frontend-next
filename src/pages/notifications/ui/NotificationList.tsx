@@ -3,7 +3,7 @@
 import { Accordion, Stack } from '@mantine/core';
 import { useEffect } from 'react';
 import { useStores } from '@/shared/hooks/use-stores';
-import { Notification } from '@/entities/notification/model/notification.types';
+import { Notification } from '@/entities/notification/model/types';
 import StatusMessage from '@/shared/ui/StatusMessage';
 import CardContainer from '@/shared/ui/CardContainer';
 

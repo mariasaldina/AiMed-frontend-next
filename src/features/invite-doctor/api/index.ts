@@ -1,6 +1,6 @@
 import { mapMessage } from '@/entities/message/model/mapper';
 import { api } from '@/shared/api';
-import { MessageDto } from '@/shared/api/contracts/message.dto';
+import { MessageDto } from '@/shared/api/dtos';
 import { InviteDoctorRoutes } from './routes';
 
 export const inviteDoctor = async (

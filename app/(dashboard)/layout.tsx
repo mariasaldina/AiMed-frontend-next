@@ -1,6 +1,6 @@
 'use client';
 
-import RootWrapper from '@/widgets/rootWrapper/ui/RootWrapper';
+import { RootWrapper } from '@/widgets/root-wrapper';
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 

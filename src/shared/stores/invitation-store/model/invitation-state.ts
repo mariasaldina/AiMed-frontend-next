@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Invitation } from '@/entities/invitation/model/invitation.types';
+import { Invitation } from '@/entities/invitation/model/types';
 import { RootStore } from '@/shared/stores';
 
 export class InvitationState {

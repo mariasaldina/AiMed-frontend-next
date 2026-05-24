@@ -1,5 +1,5 @@
 import { api } from '@/shared/api';
-import { Chat } from '@/entities/chat/model/chat.types';
+import { Chat } from '../model/types';
 import axios from 'axios';
 import { ChatRoutes } from './routes';
 

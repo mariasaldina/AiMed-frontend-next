@@ -1,6 +1,6 @@
 'use client';
 
-import { SignUpPage } from '@/pages/auth';
+import { SignUpPage } from '@/pages/sign-up';
 import { Metadata } from 'next';
 
 export const signUpMetadata: Metadata = {

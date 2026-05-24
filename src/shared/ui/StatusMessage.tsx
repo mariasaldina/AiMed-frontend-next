@@ -1,9 +1,9 @@
 'use client';
 
-import { Flex, Text, useMantineTheme } from '@mantine/core';
+import { Flex, Text } from '@mantine/core';
 import { statusUiConfig } from '../config/status-ui-config';
-
-type Status = 'APPROVED' | 'REJECTED' | 'PENDING' | 'CANCELLED';
+import { Status } from '../types/enums';
+import { useStatusColor } from '../hooks/use-status-color';
 
 interface StatusMessageProps {
     status: Status;
@@ -11,13 +11,13 @@ interface StatusMessageProps {
 }
 
 function StatusMessage({ status, text }: StatusMessageProps) {
-    const theme = useMantineTheme();
-    const color = statusUiConfig[status].color;
+    const theme = useStatusColor();
+    const color = theme(status);
     const Icon = statusUiConfig[status].Icon;
 
     return (
         <Flex gap={'md'} bg={`${color}.1`} p={'sm'} bdrs={0} align={'center'}>
-            <Icon color={theme.colors[color][8]} />
+            <Icon color={color[8]} />
             <Text fz={{ base: 'sm', sm: 'md' }}>{text}</Text>
         </Flex>
     );

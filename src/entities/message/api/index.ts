@@ -1,5 +1,5 @@
 import { api } from '@/shared/api';
-import { MessageDto } from '@/shared/api/contracts/message.dto';
+import { MessageDto } from '@/shared/api/dtos';
 import { mapMessage } from '../model/mapper';
 import { MessageRoutes } from './routes';
 

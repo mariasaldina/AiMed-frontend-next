@@ -1,5 +1,5 @@
+import { MessageInputObserved as MessageInput } from '@/widgets/message-input';
 import { Center, Stack, Text } from '@mantine/core';
-import MessageInput from '@/widgets/chat-window/ui/MessageInput';
 
 export function StartChatPage() {
     return (

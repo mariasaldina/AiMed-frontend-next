@@ -1,13 +1,8 @@
 import { api } from '@/shared/api';
-import type {
-    Contacts,
-    DoctorProfile,
-    PatientProfile,
-    Specialization,
-    User,
-} from '@/entities/user/model/user.types';
+import type { DoctorProfile, PatientProfile, User } from '../model/types';
 import axios from 'axios';
 import { UserRoutes } from './routes';
+import { Contacts } from '@/shared/types/contacts';
 
 export const getUser = async () => {
     try {
@@ -50,17 +45,6 @@ export const editDoctorProfile = async (
         return data;
     } catch (e) {
         throw new Error('Ошибка при редактировании профиля');
-    }
-};
-
-export const getSpecializationsList = async () => {
-    try {
-        const { data } = await api.get<Specialization[]>(
-            UserRoutes.GET_SPECIALIZATIONS,
-        );
-        return data;
-    } catch (e) {
-        throw new Error('Ошибка получения списка специализаций');
     }
 };
 

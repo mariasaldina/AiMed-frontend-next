@@ -1,4 +1,4 @@
-import { Chat } from '@/entities/chat/model/chat.types';
+import { Chat } from '@/entities/chat/model/types';
 import { RootStore } from '@/shared/stores';
 import { makeAutoObservable } from 'mobx';
 

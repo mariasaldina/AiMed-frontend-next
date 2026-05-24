@@ -17,7 +17,12 @@ function InviteDoctorModal({ doctorId }: InviteDoctorModalProps) {
 
     const [opened, setOpened] = useState(false);
 
-    const { chatId } = useParams();
+    const params = useParams();
+    if (!params) {
+        return null;
+    }
+
+    const { chatId } = params;
     const parsedChatId = chatId ? Number(chatId) : null;
 
     const form = useForm({

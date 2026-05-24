@@ -1,4 +1,4 @@
-import { MessageDto } from "@/shared/api/contracts/message.dto";
+import { MessageDto } from '@/shared/api/dtos';
 
 export interface SendMessageResponseDto {
     userMessage: MessageDto;

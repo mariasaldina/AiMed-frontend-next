@@ -1,5 +1,5 @@
 import { api } from '@/shared/api';
-import { Invitation } from '../model/invitation.types';
+import { Invitation } from '../model/types';
 import { InvitationRoutes } from './routes';
 
 export const getInvitations = async () => {

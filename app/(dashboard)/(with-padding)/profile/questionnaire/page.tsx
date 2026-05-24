@@ -1,7 +1,7 @@
 'use client';
 
 import { Metadata } from 'next';
-import { QuestionnairePage } from '@/pages/profile';
+import { QuestionnairePage } from '@/pages/questionnaire';
 
 export const questionnaireMetadata: Metadata = {
     title: 'Анкета',

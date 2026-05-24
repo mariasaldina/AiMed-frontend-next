@@ -2,13 +2,12 @@
 
 import { Flex } from '@mantine/core';
 import { useStores } from '@/shared/hooks/use-stores';
-import { observer } from 'mobx-react-lite';
 import UserMessage from '@/entities/message/ui/UserMessage';
 import AssistantMessage from '@/entities/message/ui/AssitantMessage';
 import InvitationMessage from '@/entities/message/ui/InvitationMessage';
 import FindDoctorsMessage from '@/features/find-doctors/ui/FindDoctorsMessage';
 
-const MessageList = () => {
+export function MessageList() {
     const rootStores = useStores();
     const { messages } = rootStores.messageStore.state;
 
@@ -42,6 +41,4 @@ const MessageList = () => {
             )}
         </Flex>
     );
-};
-
-export default observer(MessageList);
+}

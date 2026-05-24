@@ -1,3 +1,6 @@
+import { observer } from 'mobx-react-lite';
+import { ChatWindow } from './ui/ChatWindow';
+
 export { StartChatPage } from './ui/StartChatPage';
-export { OpenChat } from './ui/OpenChat';
 export { ChatLayout } from './ui/ChatLayout';
+export const ChatPage = observer(ChatWindow);

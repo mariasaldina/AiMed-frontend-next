@@ -1,6 +1,6 @@
 'use client';
 
-import { PublicWrapper } from '@/pages/auth';
+import { PublicWrapper } from '@/widgets/public-wrapper';
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 

@@ -1,18 +1,41 @@
-import { UrgencyStatus } from "@/shared/types/enums"
-import { Divider, Group, List, Paper, Stack, Text, useMantineTheme } from "@mantine/core"
-import { IconAlertHexagonFilled, IconClipboardListFilled, IconStethoscope, IconZoomQuestionFilled } from "@tabler/icons-react"
+import { UrgencyStatus } from '@/shared/types/enums';
+import {
+    Divider,
+    Group,
+    List,
+    Paper,
+    Stack,
+    Text,
+    useMantineTheme,
+} from '@mantine/core';
+import {
+    IconAlertHexagonFilled,
+    IconClipboardListFilled,
+    IconStethoscope,
+    IconZoomQuestionFilled,
+} from '@tabler/icons-react';
 
 interface AssistantMessageProps {
-    possibleCauses: string[],
-    recommendations: string[],
-    doctors: string[],
-    urgency: UrgencyStatus
+    possibleCauses: string[];
+    recommendations: string[];
+    doctors: string[];
+    urgency: UrgencyStatus;
 }
 
-function AssistantMessage({ possibleCauses, recommendations, doctors, urgency }: AssistantMessageProps) {
-    const color = urgency === 'SAFE' ? 'green' : urgency === 'CONCERNING' ? 'orange' : 'red'
-    const theme = useMantineTheme()
-    const iconColor = theme.colors['indigo'][6]
+function AssistantMessage({
+    possibleCauses,
+    recommendations,
+    doctors,
+    urgency,
+}: AssistantMessageProps) {
+    const color =
+        urgency === 'SAFE'
+            ? 'green'
+            : urgency === 'CONCERNING'
+              ? 'orange'
+              : 'red';
+    const theme = useMantineTheme();
+    const iconColor = theme.colors['indigo'][6];
 
     return (
         <Paper
@@ -27,11 +50,11 @@ function AssistantMessage({ possibleCauses, recommendations, doctors, urgency }:
                 <Stack gap={5}>
                     <Group>
                         <IconAlertHexagonFilled color={color} />
-                        <Text fw={800} size="lg">Уровень риска</Text>
+                        <Text fw={800} size="lg">
+                            Уровень риска
+                        </Text>
                     </Group>
-                    <Text
-                        c={color}
-                    >
+                    <Text c={color}>
                         {urgency === 'SAFE' && 'Безопасный'}
                         {urgency === 'CONCERNING' && 'Тревожный'}
                         {urgency === 'CRITICAL' && 'Критический'}
@@ -43,10 +66,14 @@ function AssistantMessage({ possibleCauses, recommendations, doctors, urgency }:
                 <Stack>
                     <Group>
                         <IconZoomQuestionFilled color={iconColor} />
-                        <Text fw={800} size="lg">Возможные причины</Text>
+                        <Text fw={800} size="lg">
+                            Возможные причины
+                        </Text>
                     </Group>
                     <List>
-                        {possibleCauses.map((c, i) => <List.Item key={i}>{c}</List.Item>)}
+                        {possibleCauses.map((c, i) => (
+                            <List.Item key={i}>{c}</List.Item>
+                        ))}
                     </List>
                 </Stack>
 
@@ -55,10 +82,14 @@ function AssistantMessage({ possibleCauses, recommendations, doctors, urgency }:
                 <Stack>
                     <Group>
                         <IconClipboardListFilled color={iconColor} />
-                        <Text fw={800} size="lg">Рекомендации</Text>
+                        <Text fw={800} size="lg">
+                            Рекомендации
+                        </Text>
                     </Group>
                     <List>
-                        {recommendations.map((r, i) => <List.Item key={i}>{r}</List.Item>)}
+                        {recommendations.map((r, i) => (
+                            <List.Item key={i}>{r}</List.Item>
+                        ))}
                     </List>
                 </Stack>
 
@@ -67,15 +98,19 @@ function AssistantMessage({ possibleCauses, recommendations, doctors, urgency }:
                 <Stack>
                     <Group>
                         <IconStethoscope color={iconColor} />
-                        <Text fw={800} size="lg">К каким специалистам обратиться?</Text>
+                        <Text fw={800} size="lg">
+                            К каким специалистам обратиться?
+                        </Text>
                     </Group>
                     <List>
-                        {doctors.map((d, i) => <List.Item key={i}>{d}</List.Item>)}
+                        {doctors.map((d, i) => (
+                            <List.Item key={i}>{d}</List.Item>
+                        ))}
                     </List>
                 </Stack>
             </Stack>
         </Paper>
-    )
+    );
 }
 
-export default AssistantMessage
+export default AssistantMessage;

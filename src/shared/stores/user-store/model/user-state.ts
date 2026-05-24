@@ -1,4 +1,4 @@
-import { User } from '@/entities/user/model/user.types';
+import { User } from '@/entities/user/model/types';
 import { RootStore } from '@/shared/stores';
 import { makeAutoObservable } from 'mobx';
 

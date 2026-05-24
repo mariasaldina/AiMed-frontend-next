@@ -1,10 +1,10 @@
 import { Badge, Flex, Paper, Stack, Text } from '@mantine/core';
-import { Doctor } from '@/entities/message/model/message.types';
+import { DoctorSuggestion } from '@/entities/message/model/types';
 import { getExperience } from '@/entities/message/lib/experience-formatter';
 import InviteDoctorModal from './InviteDoctorModal';
 
 interface FindDoctorsMessageProps {
-    doctors: Doctor[];
+    doctors: DoctorSuggestion[];
 }
 
 function FindDoctorsMessage({ doctors }: FindDoctorsMessageProps) {

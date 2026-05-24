@@ -1,5 +1,5 @@
-import { MessageDto } from '@/shared/api/contracts/message.dto';
-import { Doctor, Message } from './message.types';
+import { MessageDto } from '@/shared/api/dtos';
+import { DoctorSuggestion, Message } from './types';
 
 export function mapMessage(dto: MessageDto): Message {
     if (dto.type === 'USER') {
@@ -29,7 +29,7 @@ export function mapMessage(dto: MessageDto): Message {
             id: String(dto.id),
             createdAt: dto.createdAt,
             doctors: dto.doctorSuggestionsPayload!.map(
-                (doctor): Doctor => ({
+                (doctor): DoctorSuggestion => ({
                     userId: String(doctor.userId),
                     fullName: doctor.fullName,
                     specializations: doctor.specializations,

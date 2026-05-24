@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Notification } from '@/entities/notification/model/notification.types';
+import { Notification } from '@/entities/notification/model/types';
 import { RootStore } from '@/shared/stores';
 
 export class NotificationState {

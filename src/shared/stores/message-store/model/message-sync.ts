@@ -1,4 +1,4 @@
-import { Message } from '@/entities/message/model/message.types';
+import { Message } from '@/entities/message/model/types';
 import { RootStore } from '@/shared/stores';
 import { MessageState } from './message-state';
 import { makeAutoObservable } from 'mobx';

@@ -2,7 +2,7 @@ import { useMantineTheme } from '@mantine/core';
 import { Status } from '../types/enums';
 import { statusUiConfig } from '../config/status-ui-config';
 
-export const useStatusColor = (status: Status) => {
+export const useStatusColor = () => {
     const theme = useMantineTheme();
-    return theme.colors[statusUiConfig[status].color];
+    return (status: Status) => theme.colors[statusUiConfig[status].color];
 };

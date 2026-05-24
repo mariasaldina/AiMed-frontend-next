@@ -13,11 +13,8 @@ import {
     LoginCredentialsDto,
     SignUpCredentialsDto,
 } from '@/features/auth/api/dtos';
-import {
-    Contacts,
-    DoctorProfile,
-    PatientProfile,
-} from '@/entities/user/model/user.types';
+import { DoctorProfile, PatientProfile } from '@/entities/user/model/types';
+import { Contacts } from '@/shared/types/contacts';
 
 export class UserAsync {
     constructor(

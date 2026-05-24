@@ -1,6 +1,6 @@
 'use client';
 
-import { ContactsPage } from '@/pages/profile';
+import { ContactsPage } from '@/pages/contacts';
 import { Metadata } from 'next';
 
 export const contactsMetadata: Metadata = {

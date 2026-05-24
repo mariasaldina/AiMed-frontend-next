@@ -1,7 +1,7 @@
 'use client';
 
-import { OpenChat } from "@/pages/chats";
+import { ChatPage } from "@/pages/chats";
 
 export default function Page() {
-    return <OpenChat />;
+    return <ChatPage />;
 }

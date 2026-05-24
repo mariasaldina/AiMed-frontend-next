@@ -1,6 +1,6 @@
 import { Stack } from '@mantine/core';
 import FieldBlock from '@/shared/ui/FieldBlock';
-import { Contacts } from '../model/user.types';
+import { Contacts } from '@/shared/types/contacts';
 
 function ContactsCard({ contacts }: { contacts: Contacts | null | undefined }) {
     return (

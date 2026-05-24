@@ -1,5 +1,5 @@
 import { mapMessage } from '@/entities/message/model/mapper';
-import { Message } from '@/entities/message/model/message.types';
+import { Message } from '@/entities/message/model/types';
 import { api } from '@/shared/api';
 import { SendMessageResponseDto } from './dtos';
 import { SendMessageRoutes } from './routes';
