@@ -5,8 +5,9 @@ import { ProfileForm } from '@/widgets/profile-form';
 import { Box, Button, Center, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconEdit } from '@tabler/icons-react';
+import { observer } from 'mobx-react-lite';
 
-export function Questionnaire() {
+function Questionnaire() {
     const [isEditing, { open, close }] = useDisclosure(false);
 
     const rootStore = useStores();
@@ -38,3 +39,5 @@ export function Questionnaire() {
         </Center>
     );
 }
+
+export const QuestionnairePage = observer(Questionnaire);

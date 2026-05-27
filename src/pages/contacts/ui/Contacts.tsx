@@ -8,6 +8,7 @@ import { useStores } from '@/shared/hooks/use-stores';
 import EditableForm from '@/shared/ui/EditableForm';
 import { IconEdit } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
+import { observer } from 'mobx-react-lite';
 
 const emailSchema = z
     .string()
@@ -35,7 +36,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export function Contacts() {
+function Contacts() {
     const [isEditing, { open, close }] = useDisclosure(false);
 
     const rootStore = useStores();
@@ -112,3 +113,5 @@ export function Contacts() {
         </Center>
     );
 }
+
+export const ContactsPage = observer(Contacts);

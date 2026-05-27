@@ -1,9 +1,7 @@
-'use client';
-
 import { SignUpPage } from '@/pages/sign-up';
 import { Metadata } from 'next';
 
-export const signUpMetadata: Metadata = {
+export const metadata: Metadata = {
     title: 'Регистрация',
     description: 'Страница регистрации',
     openGraph: {

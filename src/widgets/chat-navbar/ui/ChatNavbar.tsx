@@ -15,12 +15,13 @@ import { useStores } from '@/shared/hooks/use-stores';
 import useChatCrud from '@/features/chat-crud/model/use-chat-crud';
 import ChatModal from '@/features/chat-crud/ui/ChatModal';
 import ChatItem from './ChatNavbarItem';
+import { observer } from 'mobx-react-lite';
 
 interface ChatNavbarProps extends AppShellNavbarProps {
     onSelect: () => void;
 }
 
-export function ChatNavbar({ onSelect }: ChatNavbarProps) {
+function ChatNavbar({ onSelect }: ChatNavbarProps) {
     const params = useParams();
     if (!params) {
         return null;
@@ -97,3 +98,5 @@ export function ChatNavbar({ onSelect }: ChatNavbarProps) {
         </Stack>
     );
 }
+
+export const ChatNavbarObserved = observer(ChatNavbar);

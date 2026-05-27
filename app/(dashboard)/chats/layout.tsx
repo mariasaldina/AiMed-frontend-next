@@ -1,10 +1,8 @@
-'use client';
-
 import { ChatLayout } from '@/pages/chats';
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
-export const chatsMetadata: Metadata = {
+export const metadata: Metadata = {
     title: 'Чат',
     description: 'Чат с медицинским ИИ-ассистентом',
 };

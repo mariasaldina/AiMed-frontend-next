@@ -1,3 +1,5 @@
+'use client';
+
 import { Accordion, Button, Text } from '@mantine/core';
 import { IconClipboardHeart } from '@tabler/icons-react';
 import { useState } from 'react';

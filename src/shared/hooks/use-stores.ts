@@ -1,5 +1,3 @@
-'use client';
-
 import { RootStore } from '@/shared/stores';
 import { createContext, useContext } from 'react';
 

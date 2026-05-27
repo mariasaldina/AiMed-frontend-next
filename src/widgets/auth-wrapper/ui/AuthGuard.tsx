@@ -4,8 +4,9 @@ import { ReactNode, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useStores } from '@/shared/hooks/use-stores';
 import { useRouter } from 'next/navigation';
+import { observer } from 'mobx-react-lite';
 
-export function AuthGuard({ children }: { children: ReactNode }) {
+function AuthGuard({ children }: { children: ReactNode }) {
     const rootStore = useStores();
     const { user, isInitialized } = rootStore.userStore.state;
 
@@ -30,3 +31,5 @@ export function AuthGuard({ children }: { children: ReactNode }) {
 
     return children;
 }
+
+export const AuthWrapper = observer(AuthGuard);

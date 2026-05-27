@@ -11,9 +11,10 @@ import {
     Text,
 } from '@mantine/core';
 import { IconMoodSadFilled } from '@tabler/icons-react';
+import { observer } from 'mobx-react-lite';
 import { type ReactNode } from 'react';
 
-export function CommonSettings({ children }: { children: ReactNode }) {
+function CommonSettings({ children }: { children: ReactNode }) {
     const rootStore = useStores();
     const { loading, errorModal } = rootStore.settingsStore.state;
 
@@ -50,3 +51,5 @@ export function CommonSettings({ children }: { children: ReactNode }) {
         </>
     );
 }
+
+export const CommonWrapper = observer(CommonSettings);

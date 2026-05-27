@@ -1,9 +1,7 @@
-'use client';
-
 import { LoginPage } from '@/pages/login';
 import { Metadata } from 'next';
 
-export const loginMetadata: Metadata = {
+export const metadata: Metadata = {
     title: 'Вход',
     description: 'Страница авторизации',
     openGraph: {

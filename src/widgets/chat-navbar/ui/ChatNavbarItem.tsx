@@ -38,7 +38,11 @@ function ChatNavbarItem({
             shadow="xs"
             radius="md"
             p={{ base: 'xs', sm: 'md' }}
-            bg={selected === chat.id ? 'indigo.2' : 'white'}
+            bg={
+                selected === chat.id ?
+                    'light-dark(var(--mantine-color-indigo-2), var(--mantine-color-dark-5))' :
+                    'light-dark(#fff, var(--mantine-color-dark-7))'
+                }
         >
             <Group justify="space-between">
                 <Box

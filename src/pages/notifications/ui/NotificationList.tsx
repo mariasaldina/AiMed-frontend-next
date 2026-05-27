@@ -6,8 +6,9 @@ import { useStores } from '@/shared/hooks/use-stores';
 import { Notification } from '@/entities/notification/model/types';
 import StatusMessage from '@/shared/ui/StatusMessage';
 import CardContainer from '@/shared/ui/CardContainer';
+import { observer } from 'mobx-react-lite';
 
-export function NotificationList() {
+function NotificationList() {
     const rootStore = useStores();
     const { read, unread } = rootStore.notificationStore.state;
     const { loading } = rootStore.settingsStore.state;
@@ -85,3 +86,5 @@ export function NotificationList() {
         </Stack>
     );
 }
+
+export const NotificationsPage = observer(NotificationList);

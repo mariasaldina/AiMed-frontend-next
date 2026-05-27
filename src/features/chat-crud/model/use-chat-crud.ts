@@ -1,5 +1,3 @@
-'use client';
-
 import { useStores } from '@/shared/hooks/use-stores';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

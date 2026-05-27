@@ -10,7 +10,7 @@ function InvitationMessage({ content, fullName }: InvitationMessage) {
     return (
         <Paper
             p="lg"
-            bg="indigo.1"
+            bg="light-dark(var(--mantine-color-indigo-1), var(--mantine-color-indigo-9))"
             style={{
                 alignSelf: 'center',
                 borderRadius: 12,
@@ -22,7 +22,13 @@ function InvitationMessage({ content, fullName }: InvitationMessage) {
 
                 <Text style={{ alignSelf: 'center' }}>{fullName}</Text>
 
-                <Blockquote icon={<IconQuoteFilled />} p={'md'}>
+                <Blockquote
+                    icon={<IconQuoteFilled />}
+                    p={'md'}
+                    style={{
+                        borderLeftColor: 'light-dark(var(--mantine-color-indigo-9), var(--mantine-color-indigo-4))'
+                    }}
+                >
                     <Text>{content}</Text>
                 </Blockquote>
             </Stack>
