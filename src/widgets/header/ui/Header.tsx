@@ -12,6 +12,8 @@ import {
 import HeaderItem from './HeaderItem';
 import { useStores } from '@/shared/hooks/use-stores';
 import ProfileMenu from './ProfileMenu';
+import ThemeButton from './ThemeButton';
+import { observer } from 'mobx-react-lite';
 
 interface HeaderProps {
     navbarOpened: boolean;
@@ -19,7 +21,7 @@ interface HeaderProps {
     toggleNavbar: () => void;
 }
 
-export function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
+function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
     const rootStore = useStores();
     const { user } = rootStore.userStore.state;
     const { unread } = rootStore.notificationStore.state;
@@ -92,7 +94,10 @@ export function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) 
                         icon={<IconUserPlus />}
                     />
                 )}
+                <ThemeButton />
             </Flex>
         </Flex>
     );
 }
+
+export const HeaderObserved = observer(Header);

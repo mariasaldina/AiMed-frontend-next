@@ -9,9 +9,10 @@ import { useInfiniteScroll } from '@/shared/hooks/use-infinite-scroll';
 import { useLoadMessages } from '../model/use-load-messages';
 import { useChatAutoScroll } from '../model/use-chat-auto-scroll';
 import { Messages } from '@/widgets/message-list';
-import { MessageInputObserved as MessageInput } from '@/widgets/message-input';
+import { MessageInput } from '@/widgets/message-input';
+import { observer } from 'mobx-react-lite';
 
-export function ChatWindow() {
+function ChatWindow() {
     const params = useParams();
     if (!params) {
         return null;
@@ -95,3 +96,5 @@ export function ChatWindow() {
         </Flex>
     );
 }
+
+export const ChatPage = observer(ChatWindow);

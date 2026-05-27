@@ -6,8 +6,9 @@ import UserMessage from '@/entities/message/ui/UserMessage';
 import AssistantMessage from '@/entities/message/ui/AssitantMessage';
 import InvitationMessage from '@/entities/message/ui/InvitationMessage';
 import FindDoctorsMessage from '@/features/find-doctors/ui/FindDoctorsMessage';
+import { observer } from 'mobx-react-lite';
 
-export function MessageList() {
+function MessageList() {
     const rootStores = useStores();
     const { messages } = rootStores.messageStore.state;
 
@@ -42,3 +43,5 @@ export function MessageList() {
         </Flex>
     );
 }
+
+export const Messages = observer(MessageList);

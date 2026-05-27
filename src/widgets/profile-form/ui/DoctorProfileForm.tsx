@@ -1,3 +1,5 @@
+'use client';
+
 import { MultiSelect, Textarea, TextInput } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import { useForm } from '@mantine/form';

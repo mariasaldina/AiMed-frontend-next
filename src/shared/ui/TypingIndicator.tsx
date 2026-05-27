@@ -3,7 +3,7 @@ import { Loader, Paper } from '@mantine/core';
 function TypingIndicator() {
     return (
         <Paper
-            bg="gray.3"
+            bg="light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-5))"
             py={8}
             px={12}
             radius="xl"

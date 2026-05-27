@@ -5,13 +5,14 @@ import { useStores } from '@/shared/hooks/use-stores';
 import { useState } from 'react';
 import useSendMessage from '@/features/send-message/model/use-send-message';
 import useFindDoctors from '@/features/find-doctors/model/use-find-doctors';
+import { observer } from 'mobx-react-lite';
 
 interface MessageInputProps {
     chatId?: number;
     showLoading?: boolean;
 }
 
-export function MessageInput({ chatId, showLoading = false }: MessageInputProps) {
+function MessageInput({ chatId, showLoading = false }: MessageInputProps) {
     const [content, setContent] = useState('');
 
     const rootStore = useStores();
@@ -73,3 +74,5 @@ export function MessageInput({ chatId, showLoading = false }: MessageInputProps)
         </form>
     );
 }
+
+export const MessageInputObserved = observer(MessageInput);

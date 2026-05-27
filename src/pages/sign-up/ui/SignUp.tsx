@@ -18,6 +18,7 @@ import { UserRole } from '@/shared/types/enums';
 import Form from '@/shared/ui/Form';
 import { useRouter } from 'next/navigation';
 import { useStores } from '@/shared/hooks/use-stores';
+import { observer } from 'mobx-react-lite';
 
 const step1Schema = z.object({
     username: z.string().min(1, 'Обязательное поле'),
@@ -33,7 +34,7 @@ const signUpSchema = step1Schema.extend(step2Schema.shape);
 
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 
-export function SignUp() {
+function SignUp() {
     const router = useRouter();
 
     const rootStore = useStores();
@@ -165,3 +166,5 @@ export function SignUp() {
         </Center>
     );
 }
+
+export const SignUpPage = observer(SignUp);

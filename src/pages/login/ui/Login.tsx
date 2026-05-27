@@ -7,6 +7,7 @@ import { zod4Resolver } from 'mantine-form-zod-resolver';
 import Form from '@/shared/ui/Form';
 import { useRouter } from 'next/navigation';
 import { useStores } from '@/shared/hooks/use-stores';
+import { observer } from 'mobx-react-lite';
 
 const loginSchema = z.object({
     username: z.string().min(1, 'Обязательное поле'),
@@ -15,7 +16,7 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
-export function Login() {
+function Login() {
     const router = useRouter();
 
     const rootStore = useStores();
@@ -65,3 +66,5 @@ export function Login() {
         </Center>
     );
 }
+
+export const LoginPage = observer(Login);

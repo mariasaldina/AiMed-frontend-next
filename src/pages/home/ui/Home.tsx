@@ -2,9 +2,10 @@
 
 import { useStores } from '@/shared/hooks/use-stores';
 import { Center, Flex, Text, Title } from '@mantine/core';
+import { observer } from 'mobx-react-lite';
 import Link from 'next/link';
 
-export function Home() {
+function Home() {
     const rootStore = useStores();
     const { user } = rootStore.userStore.state;
 
@@ -61,3 +62,5 @@ export function Home() {
         </Center>
     );
 }
+
+export const HomePage = observer(Home);

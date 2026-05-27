@@ -6,8 +6,9 @@ import { useStores } from '@/shared/hooks/use-stores';
 import { Invitation } from '@/entities/invitation/model/types';
 import CardContainer from '@/shared/ui/CardContainer';
 import { InvitationCard } from '@/widgets/invitation-card';
+import { observer } from 'mobx-react-lite';
 
-export function InvitationList() {
+function InvitationList() {
     const rootStore = useStores();
     const user = rootStore.userStore.state.user;
     const loading = rootStore.settingsStore.state.loading;
@@ -37,3 +38,5 @@ export function InvitationList() {
         </Stack>
     );
 }
+
+export const InvitationsPage = observer(InvitationList);

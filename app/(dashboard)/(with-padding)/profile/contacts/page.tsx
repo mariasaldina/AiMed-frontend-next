@@ -1,9 +1,7 @@
-'use client';
-
 import { ContactsPage } from '@/pages/contacts';
 import { Metadata } from 'next';
 
-export const contactsMetadata: Metadata = {
+export const metadata: Metadata = {
     title: 'Контакты',
     description: 'Страница редактирования контактов',
 };

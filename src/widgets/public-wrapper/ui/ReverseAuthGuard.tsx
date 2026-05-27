@@ -3,8 +3,9 @@
 import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import { useStores } from '@/shared/hooks/use-stores';
+import { observer } from 'mobx-react-lite';
 
-export function ReverseAuthGuard({ children }: { children: ReactNode }) {
+function ReverseAuthGuard({ children }: { children: ReactNode }) {
     const rootStore = useStores();
     const { user } = rootStore.userStore.state;
     const router = useRouter();
@@ -17,3 +18,5 @@ export function ReverseAuthGuard({ children }: { children: ReactNode }) {
 
     return children;
 }
+
+export const PublicWrapper = observer(ReverseAuthGuard);
