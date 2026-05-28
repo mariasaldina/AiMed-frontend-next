@@ -3,8 +3,8 @@
 import { useStores } from '@/shared/hooks/use-stores';
 import { Button, Menu, useMatches } from '@mantine/core';
 import { IconLogout, IconUser } from '@tabler/icons-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link } from '@/shared/config/i18n/navigation';
+import { usePathname } from '@/shared/config/i18n/navigation';
 import { useState } from 'react';
 
 const ProfileMenu = () => {

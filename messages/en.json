@@ -1,0 +1,13 @@
+{
+    "HomePage": {
+        "title": "Welcome to AiMed!",
+        "patient": {
+            "subtitle": "Start dialogue",
+            "link": "with a smart assistant"
+        },
+        "doctor": {
+            "subtitle": "Check your",
+            "link": "invitations from patients"
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import { Button, Center, Flex, Stack, Title } from '@mantine/core';
 import { IconFocus2, IconSparklesFilled } from '@tabler/icons-react';
-import Link from 'next/link';
+import { Link } from '@/shared/config/i18n/navigation';
 
 export async function Landing() {
     return (

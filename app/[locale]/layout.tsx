@@ -1,4 +1,4 @@
-import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
+import { mantineHtmlProps } from '@mantine/core';
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import 'dayjs/locale/ru';
@@ -7,6 +7,7 @@ import '@fontsource/manrope/500.css';
 import '@fontsource/manrope/600.css';
 import { Metadata } from 'next';
 import AppProviders from '@/app/providers/AppProviders';
+import { NextIntlClientProvider } from 'next-intl';
 
 export const metadata: Metadata = {
     generator: 'Next.js',
@@ -49,13 +50,13 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+
     return (
-        <html lang="ru" {...mantineHtmlProps}>
-            <head>
-                <ColorSchemeScript defaultColorScheme="auto" />
-            </head>
+        <html {...mantineHtmlProps}>
             <body>
-                <AppProviders>{children}</AppProviders>
+                <NextIntlClientProvider>
+                    <AppProviders>{children}</AppProviders>
+                </NextIntlClientProvider>
             </body>
         </html>
     );

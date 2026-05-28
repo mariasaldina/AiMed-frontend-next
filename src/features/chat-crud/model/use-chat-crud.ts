@@ -1,5 +1,5 @@
 import { useStores } from '@/shared/hooks/use-stores';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/shared/config/i18n/navigation';
 import { useState } from 'react';
 
 const useChatCrud = (displayedChat: number | null) => {

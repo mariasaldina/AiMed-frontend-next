@@ -2,7 +2,7 @@
 
 import { AppShell } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/shared/config/i18n/navigation';
 import { ReactNode } from 'react';
 import { Header } from '@/widgets/header';
 import { ChatNavbar } from '@/widgets/chat-navbar';

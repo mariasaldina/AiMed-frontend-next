@@ -5,7 +5,7 @@ import { Button, Center, PasswordInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { zod4Resolver } from 'mantine-form-zod-resolver';
 import Form from '@/shared/ui/Form';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/shared/config/i18n/navigation';
 import { useStores } from '@/shared/hooks/use-stores';
 import { observer } from 'mobx-react-lite';
 

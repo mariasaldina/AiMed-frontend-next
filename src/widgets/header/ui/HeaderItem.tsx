@@ -1,8 +1,8 @@
 'use client';
 
 import { ActionIcon, Button, useMatches } from '@mantine/core';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link } from '@/shared/config/i18n/navigation';
+import { usePathname } from '@/shared/config/i18n/navigation';
 import type { ReactNode } from 'react';
 
 interface HeaderItemProps {
