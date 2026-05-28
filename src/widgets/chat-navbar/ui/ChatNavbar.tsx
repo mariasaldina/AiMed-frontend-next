@@ -10,7 +10,8 @@ import {
 import { ScrollArea, Stack } from '@mantine/core';
 import { IconSparkles } from '@tabler/icons-react';
 import { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { useRouter } from '@/shared/config/i18n/navigation';
 import { useStores } from '@/shared/hooks/use-stores';
 import useChatCrud from '@/features/chat-crud/model/use-chat-crud';
 import ChatModal from '@/features/chat-crud/ui/ChatModal';

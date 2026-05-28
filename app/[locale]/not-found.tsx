@@ -2,7 +2,7 @@
 
 import { useStores } from '@/shared/hooks/use-stores';
 import { Button, Stack, Title } from '@mantine/core';
-import Link from 'next/link';
+import { Link } from '@/shared/config/i18n/navigation';
 
 export default function NotFoundLayout() {
     const rootStore = useStores();

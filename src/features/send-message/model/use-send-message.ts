@@ -1,6 +1,6 @@
 import { useStores } from '@/shared/hooks/use-stores';
 import { Message } from '@/entities/message/model/types';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/shared/config/i18n/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
 const useSendMessage = (

@@ -14,6 +14,7 @@ import { useStores } from '@/shared/hooks/use-stores';
 import ProfileMenu from './ProfileMenu';
 import ThemeButton from './ThemeButton';
 import { observer } from 'mobx-react-lite';
+import LocaleButton from './LocaleButton';
 
 interface HeaderProps {
     navbarOpened: boolean;
@@ -95,6 +96,7 @@ function Header({ navbarOpened, showNavbar, toggleNavbar }: HeaderProps) {
                     />
                 )}
                 <ThemeButton />
+                <LocaleButton />
             </Flex>
         </Flex>
     );

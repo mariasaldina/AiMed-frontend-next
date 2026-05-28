@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/shared/config/i18n/navigation';
 import { ReactNode, useEffect } from 'react';
 import { useStores } from '@/shared/hooks/use-stores';
 import { observer } from 'mobx-react-lite';
@@ -12,7 +12,7 @@ function ReverseAuthGuard({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         if (user) {
-            router.replace('/');
+            router.replace('/home');
         }
     }, [user, router]);
 

@@ -1,9 +1,9 @@
 'use client';
 
 import { ReactNode, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/shared/config/i18n/navigation';
 import { useStores } from '@/shared/hooks/use-stores';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/shared/config/i18n/navigation';
 import { observer } from 'mobx-react-lite';
 
 function AuthGuard({ children }: { children: ReactNode }) {

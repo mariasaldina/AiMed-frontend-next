@@ -3,11 +3,13 @@
 import { useStores } from '@/shared/hooks/use-stores';
 import { Center, Flex, Text, Title } from '@mantine/core';
 import { observer } from 'mobx-react-lite';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/shared/config/i18n/navigation';
 
 function Home() {
     const rootStore = useStores();
     const { user } = rootStore.userStore.state;
+    const t = useTranslations('HomePage');
 
     return (
         <Center h={'100dvh'}>
@@ -25,12 +27,12 @@ function Home() {
                     w={{ base: '100%', sm: '70%' }}
                     ta="right"
                 >
-                    Добро пожаловать в AiMed!
+                    {t('title')}
                 </Title>
                 <Text ff="monospace" fz={{ base: 24, sm: 32 }}>
                     {user?.role === 'PATIENT' ? (
                         <>
-                            Начните{' '}
+                            {t('patient.subtitle')}{' '}
                             <Link
                                 href="/chats"
                                 style={{
@@ -39,12 +41,12 @@ function Home() {
                                     textUnderlineOffset: 5,
                                 }}
                             >
-                                чат с помощником
+                                {t('patient.link')}
                             </Link>
                         </>
                     ) : (
                         <>
-                            Просмотрите{' '}
+                            {t('doctor.subtitle')}{' '}
                             <Link
                                 href="/invitations"
                                 style={{
@@ -53,7 +55,7 @@ function Home() {
                                     textUnderlineOffset: 5,
                                 }}
                             >
-                                заявки от пациентов
+                                {t('doctor.link')}
                             </Link>
                         </>
                     )}
