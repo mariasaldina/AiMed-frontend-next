@@ -22,8 +22,5 @@ export interface DoctorProfile {
     education: string | null;
     description: string | null;
     practiceStartDate: Date | null;
-    license: string | null;
-    licenseIssueDate: Date | null;
-    licenseExpiryDate: Date | null;
     specializationIds: number[];
 }

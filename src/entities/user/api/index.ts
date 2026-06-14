@@ -10,7 +10,7 @@ export const getUser = async () => {
         return data;
     } catch (e) {
         if (axios.isAxiosError(e)) {
-            if (e.response?.status === 401) {
+            if (e.response?.status === 401 || e.response?.status === 403) {
                 return null;
             }
         }

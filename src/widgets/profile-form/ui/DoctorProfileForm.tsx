@@ -25,9 +25,6 @@ const formSchema = z.object({
     education: z.string().min(1, 'Обязательное поле'),
     description: z.string().min(1, 'Обязательное поле'),
     practiceStartDate: z.coerce.date().nullable(),
-    license: z.string().min(1, 'Обязательное поле'),
-    licenseIssueDate: z.coerce.date().nullable(),
-    licenseExpiryDate: z.coerce.date().nullable(),
     specializationIds: z
         .array(z.number())
         .min(1, 'Укажите хотя бы 1 специальность'),
@@ -68,9 +65,6 @@ function DoctorProfileForm({ isEditing, onCancel }: DoctorProfileFormProps) {
             education: '',
             description: '',
             practiceStartDate: null,
-            license: '',
-            licenseIssueDate: null,
-            licenseExpiryDate: null,
             specializationIds: [],
         },
         validate: zod4Resolver(formSchema),
@@ -84,9 +78,6 @@ function DoctorProfileForm({ isEditing, onCancel }: DoctorProfileFormProps) {
             education: rawProfile.education || '',
             description: rawProfile.description || '',
             practiceStartDate: rawProfile.practiceStartDate || null,
-            license: rawProfile.license || '',
-            licenseIssueDate: rawProfile.licenseIssueDate || null,
-            licenseExpiryDate: rawProfile.licenseExpiryDate || null,
             specializationIds: rawProfile.specializationIds || [],
         });
     };
@@ -145,24 +136,6 @@ function DoctorProfileForm({ isEditing, onCancel }: DoctorProfileFormProps) {
                 label="Дата начала практики"
                 readOnly={!isEditing}
                 {...form.getInputProps('practiceStartDate')}
-            />
-            <TextInput
-                placeholder=""
-                label="Лицензия"
-                readOnly={!isEditing}
-                {...form.getInputProps('license')}
-            />
-            <DateInput
-                placeholder=""
-                label="Дата выдачи лицензии"
-                readOnly={!isEditing}
-                {...form.getInputProps('licenseIssueDate')}
-            />
-            <DateInput
-                placeholder=""
-                label="Дата окончания действия лицензии"
-                readOnly={!isEditing}
-                {...form.getInputProps('licenseExpiryDate')}
             />
             <MultiSelect
                 label="Медицинские специализации"
